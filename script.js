@@ -71,35 +71,54 @@ function mainFunc() {
     let containers = document.querySelectorAll(".minigame-container"); // Получаем все контейнеры
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
     let lockBg = document.querySelector(".minigame-lock"); // получаем блок с затемнением
-    
+
     lockBg.classList.add("minigame-lock_active");
-    
+
     setTimeout(() => {
-      containers.forEach((container) => {
-        let containerZIndex = Number(getComputedStyle(container).zIndex);
-        container.classList.add("minigame-container_bg");
-        container.style.zIndex = `${containerZIndex + 101}`;
-        
-        container.addEventListener("click", (event) => {
-          let containerActive = container;
-          railwayAndTrainBlock.style.zIndex = `101`;
-          
-          containers.forEach((containerNoActive) => {
-            if (containerNoActive !== containerActive) {
-              let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex);
-              
-              containerNoActive.classList.remove("minigame-container_bg");
-              containerNoActive.style.zIndex = `${containerZIndexNow - 101}`;
-            }
-          });
-          
-          railwaysCarriages.forEach((carriage) => {
-            let carriageZIndex = Number(getComputedStyle(carriage).zIndex);
-            carriage.classList.add("minigame-container_bg");
-            carriage.style.zIndex = `${carriageZIndex + 101}`
+      function FirstAnimateAndClicks() {
+        containers.forEach((container) => {
+          let containerZIndex = Number(getComputedStyle(container).zIndex);
+          container.classList.add("minigame-container_bg");
+          container.style.zIndex = `${containerZIndex + 101}`;
+
+          container.addEventListener("click", (event) => {
+            let containerActive = container;
+            railwayAndTrainBlock.style.zIndex = `101`;
+
+            containers.forEach((containerNoActive) => {
+              if (containerNoActive !== containerActive) {
+                let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex);
+
+                containerNoActive.classList.remove("minigame-container_bg");
+                containerNoActive.style.zIndex = `${containerZIndexNow - 101}`;
+              }
+            });
+
+            railwaysCarriages.forEach((carriage) => {
+              let carriageZIndex = Number(getComputedStyle(carriage).zIndex);
+              carriage.classList.add("minigame-container_bg");
+              carriage.style.zIndex = `${carriageZIndex + 101}`
+
+              carriage.addEventListener("click", (event) => {
+                let carriageActive = carriage;
+
+                railwaysCarriages.forEach((carriageNoActive) => {
+                  if (carriageNoActive !== carriageActive) {
+                    let carriageZIndexNow = Number(getComputedStyle(carriageNoActive).zIndex);
+
+                    carriageNoActive.classList.remove("minigame-container_bg");
+                    carriageNoActive.style.zIndex = `${carriageZIndexNow - 101}`;
+                  }
+                });
+              });
+            });
           });
         });
-      });
+      }; FirstAnimateAndClicks();
+      //let rightNow = `${(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth + container.clientWidth - scaleDifference)}px`;
+      //container.style.right = rightNow;
+
+      console.log("(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth - scaleDifference) = ", containerBlock, containerPositionX, carriagePositionX, railwaysCarriagesBlock, carriage.clientWidth, scaleDifference);
     }, 1000);
   };
 
