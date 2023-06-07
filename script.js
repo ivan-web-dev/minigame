@@ -66,12 +66,42 @@ function mainFunc() {
     }
   }
 
-  function gameLogic(pxDifference, railwayAndTrainPosition) {
-    let containerBlock = document.querySelector(".minigame-containers-block"); // получаем родительский блок с контейнерами
+  function gameLogic(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock) {
+    //let containerBlock = document.querySelector(".minigame-containers-block"); // получаем родительский блок с контейнерами
     let containers = document.querySelectorAll(".minigame-container"); // Получаем все контейнеры
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
     let lockBg = document.querySelector(".minigame-lock"); // получаем блок с затемнением
-  }
+    
+    lockBg.classList.add("minigame-lock_active");
+    
+    setTimeout(() => {
+      containers.forEach((container) => {
+        let containerZIndex = Number(getComputedStyle(container).zIndex);
+        container.classList.add("minigame-container_bg");
+        container.style.zIndex = `${containerZIndex + 101}`;
+        
+        container.addEventListener("click", (event) => {
+          let containerActive = container;
+          railwayAndTrainBlock.style.zIndex = `101`;
+          
+          containers.forEach((containerNoActive) => {
+            if (containerNoActive !== containerActive) {
+              let containerZIndexNow = Number(getComputedStyle(container).zIndex);
+              
+              containerNoActive.classList.remove("minigame-container_bg");
+              //containerNoActive.style.zIndex = `${containerZIndexNow - 101}`;
+            }
+          });
+          
+          railwaysCarriages.forEach((carriage) => {
+            let carriageZIndex = Number(getComputedStyle(carriage).zIndex);
+            carriage.classList.add("minigame-container_bg");
+            carriage.style.zIndex = `${carriageZIndex + 101}`
+          });
+        });
+      });
+    }, 1000);
+  };
 
   if (document.body.clientWidth < 1921 && document.body.clientWidth >= 1280) {
     let size = 1920 - document.body.clientWidth; // разница начальной ширины экрана от текущей
@@ -99,7 +129,7 @@ function mainFunc() {
         }
       }
     `;
-    gameLogic(14, railwayAndTrainPosition);
+    gameLogic(14, railwayAndTrainPosition, railwayAndTrainBlock);
     console.log(1280);
   } else if (document.body.clientWidth < 1280 && document.body.clientWidth >= 960) {
     let size = 1280 - document.body.clientWidth; // разница начальной ширины экрана от текущей

@@ -101,7 +101,7 @@
   top: 115px;
   right: -1442px;
   animation-name: trainStart;
-  animation-duration: 6s;
+  animation-duration: 1s;
   animation-timing-function: ease-in-out;
   animation-delay: 250ms;
   animation-iteration-count: 1;
@@ -114,6 +114,7 @@
   z-index: 4;
 } .minigame-railway-carriage {
   position: absolute;
+  cursor: pointer;
 } .railway-carriage-1 {
   top: -56px;
   right: -368px;
@@ -134,6 +135,7 @@
 } .minigame-container {
   position: absolute;
   transition: 0.5s;
+  cursor: pointer;
 } .minigame-container_bg {
   box-shadow: 0px 0px 10px #fff;
 } .minigame-container-1 {
