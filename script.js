@@ -86,10 +86,10 @@ function mainFunc() {
           
           containers.forEach((containerNoActive) => {
             if (containerNoActive !== containerActive) {
-              let containerZIndexNow = Number(getComputedStyle(container).zIndex);
+              let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex);
               
               containerNoActive.classList.remove("minigame-container_bg");
-              //containerNoActive.style.zIndex = `${containerZIndexNow - 101}`;
+              containerNoActive.style.zIndex = `${containerZIndexNow - 101}`;
             }
           });
           
