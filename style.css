@@ -1,0 +1,469 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-style: normal;
+} .minigame {
+  position: relative;
+  max-width: 1920px;
+  width: 100%;
+  height: 100vh;
+  min-height: 400px;
+  background: #000;
+  background-image: url("./images/main-image.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+  /* pointer-events: none; */
+} .minigame-lock {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: 0.5s;
+} .minigame-lock_active {
+  display: block;
+  opacity: 0.7;
+  z-index: 100;
+} .minigame-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+} .minigame-lock__title {
+  display: none;
+} .minigame-bg {
+  /* display: flex; */
+  display: none;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background: #000; */
+  /* opacity: .7; */
+  z-index: 100;
+} .minigame-btn {
+  padding: 17.5px 30px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 207px;
+  gap: 30px;
+  cursor: pointer;
+  position: absolute;
+  left: 250px;
+  bottom: 250px;
+} .minigame-btn p {
+  font-family: 'Evolventa';
+  font-weight: 700;
+  /* font-size: 16px; */
+  line-height: 155%;
+  color: #000;
+}
+
+.minigame-ship {
+  position: absolute;
+  top: 52px;
+  right: 750px;
+  /* left: 369px; */
+  width: 800px;
+} .minigame-crane-header {
+  position: absolute;
+  top: 62px;
+  right: 757px;
+  z-index: 21;
+  /* transform: rotate3d(0, 6, 0, 3.142rad); */
+  perspective: 800px;
+} .minigame-crane-footer {
+  position: absolute;
+  top: 194px;
+  right: 852px;
+  z-index: 20;
+  pointer-events: none;
+} .minigame-car {
+  position: absolute;
+} .minigame-train-block {
+  position: relative;
+  width: fit-content;
+  z-index: 1;
+  top: 115px;
+  right: -1442px;
+  animation-name: trainStart;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 250ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+} .minigame-train { 
+  position: absolute;
+  top: 0;
+  right: -214px;
+  z-index: 4;
+} .minigame-railway-carriage {
+  position: absolute;
+} .railway-carriage-1 {
+  top: -56px;
+  right: -368px;
+  z-index: 3;
+} .railway-carriage-2 {
+  top: -140px;
+  right: -523px;
+  z-index: 2;
+} .railway-carriage-3 {
+  top: -224px;
+  right: -677px;
+  z-index: 1;
+} .minigame-containers-block {
+  position: relative;
+  top: 421px;
+  right: -982px;
+  width: 0;
+} .minigame-container {
+  position: absolute;
+  transition: 0.5s;
+} .minigame-container_bg {
+  box-shadow: 0px 0px 10px #fff;
+} .minigame-container-1 {
+  top: 14px;
+  right: 393px;
+  z-index: 3;
+} .minigame-container-2 {
+  top: 29px;
+  right: 368px;
+  z-index: 4;
+} .minigame-container-3 {
+  top: 44px;
+  right: 342px;
+  z-index: 5;
+} .minigame-container-4 {
+  top: 4px;
+  right: 270px;
+  z-index: 2;
+} .minigame-container-5 {
+  top: -10px;
+  right: 296px;
+  z-index: 1;
+} .minigame-container-6 {
+  top: -26px;
+  right: 325px;
+  z-index: 0;
+} .minigame-container-7 {
+  top: -126px;
+  right: 203px;
+  z-index: 3;
+} .minigame-container-8 {
+  top: -113px;
+  right: 180px;
+  z-index: 4;
+} .minigame-container-9 {
+  top: -100px;
+  right: 157px;
+  z-index: 5;
+} .minigame-container-10 {
+  top: -147px;
+  right: 191px;
+  z-index: 6;
+} .minigame-container-11 {
+  top: 0px;
+  right: 417px;
+  z-index: 2;
+} .minigame-container-12 {
+  top: -132px;
+  right: 165px;
+  z-index: 7;
+}
+
+@media (max-width: 1279px) {
+  .minigame {
+    background-position-x: -190px;
+    background-position-y: -200px;
+  } .minigame-ship {
+    max-width: 600px;
+    right: 546px;
+  } .minigame-crane-header {
+    max-width: 350px;
+    top: 128px;
+    right: 530px;
+  } .minigame-crane-footer {
+    max-width: 200px;
+    right: 586px;
+  } .minigame-containers-block {
+    top: 315px;
+    right: -225px;
+  } 
+  
+  .minigame-container {
+    max-width: 60px;
+  } .minigame-container-1 {
+    top: 10px;
+    right: 400px;
+    z-index: 3;
+  } .minigame-container-2 {
+    top: 20px;
+    right: 383px;
+    z-index: 4;
+  } .minigame-container-3 {
+    top: 30px;
+    right: 366px;
+    z-index: 5;
+  } .minigame-container-4 {
+    top: -15px;
+    right: 409px;
+    z-index: 4;
+  } .minigame-container-5 {
+    top: -5px;
+    right: 391px;
+    z-index: 5;
+  } .minigame-container-6 {
+    top: 5px;
+    right: 373px;
+    z-index: 0;
+  } .minigame-container-7 {
+    top: 0px;
+    right: 418px;
+    z-index: 2;
+  } .minigame-container-8 {
+    top: -44px;
+    right: 227px;
+    z-index: 5;
+  } .minigame-container-9 {
+    top: -55px;
+    right: 245px;
+    z-index: 4;
+  } .minigame-container-10 {
+    top: -65px;
+    right: 263px;
+    z-index: 3;
+  } .minigame-container-11 {
+    top: -70px;
+    right: 236px;
+    z-index: 6;
+  } .minigame-container-12 {
+    top: -81px;
+    right: 256px;
+    z-index: 5;
+  }
+} @media (max-width: 959px) {
+  .minigame {
+    /* background-size: 1400px; */
+    background-size: 1200px;
+    /* background-position-x: -140px; */
+    /* background-position-y: -47px;  */
+    background-position-x: -30px;
+    background-position-y: -70px;
+    /* background-position-x: -190px;
+    background-position-y: -200px; */
+  } .minigame-ship {
+    max-width: 440px;
+    /* top: 135px; */
+    /* right: 423px; */
+    top: 34px;
+    right: 352px;
+  } .minigame-crane-header {
+    /* top: 90px; */
+    /* right: 345px; */
+    top: 28px;
+    right: 343px;
+  } .minigame-crane-footer {
+    right: 394px;
+    /* top: 160px; */
+    top: 93px;
+  } .minigame-containers-block {
+    /* top: 315px;
+    right: -163px; */
+    top: 211px;
+    right: -244px;
+  } 
+  
+  .minigame-container {
+    max-width: 45px;
+  } .minigame-container-1 {
+    top: 8px;
+    right: 405px;
+    z-index: 3;
+  } .minigame-container-2 {
+    top: 16px;
+    right: 392px;
+    z-index: 4;
+  } .minigame-container-3 {
+    top: 24px;
+    right: 379px;
+    z-index: 5;
+  } .minigame-container-4 {
+    top: -12px;
+    right: 413px;
+    z-index: 4;
+  } .minigame-container-5 {
+    top: -4px;
+    right: 399px;
+    z-index: 5;
+  } .minigame-container-6 {
+    top: 5px;
+    right: 385px;
+    z-index: 5;
+  } .minigame-container-7 {
+    top: 0px;
+    right: 418px;
+    z-index: 2;
+  } .minigame-container-8 {
+    top: -49px;
+    right: 290px;
+    z-index: 5;
+  } .minigame-container-9 {
+    top: -57px;
+    right: 303px;
+    z-index: 4;
+  } .minigame-container-10 {
+    top: -65px;
+    right: 316px;
+    z-index: 3;
+  } .minigame-container-11 {
+    top: -68px;
+    right: 296px;
+    z-index: 6;
+  } .minigame-container-12 {
+    top: -76px;
+    right: 310px;
+    z-index: 5;
+  }
+} @media (max-width: 650px) and (orientation: portrait) {
+  .minigame-lock {
+    display: flex;
+    opacity: 1;
+    transition: 0;
+  } .minigame-lock__title {
+    display: inline;
+  }
+} @media (max-width: 650px) and (orientation: landscape) {
+  .minigame {
+    background-size: 1000px;
+    background-position-x: 0;
+    background-position-y: -100px;
+  } .minigame-ship {
+    max-width: 300px;
+    top: 92px;
+    right: 270px;
+  } .minigame-crane-header {
+    max-width: 250px;
+    top: 113px;
+    right: 292px;
+  } .minigame-crane-footer {
+    max-width: 130px;
+    top: 165px;
+    right: 334px;
+  } .minigame-containers-block {
+    top: 210px;
+    right: -99px;
+  } 
+  
+  .minigame-container-3 {
+    top: -23px;
+    right: 405px;
+    z-index: 6;
+  }  .minigame-container-6 {
+    top: -85px;
+    right: 292px;
+    z-index: 7;
+  } .minigame-container-8 {
+    /* top: -49px; */
+    /* right: 290px; */
+    top: -47px;
+    right: 280px;
+    z-index: 5;
+  } .minigame-container-9 {
+    top: -55px;
+    right: 293px;
+    z-index: 4;
+  } .minigame-container-10 {
+    top: -63px;
+    right: 306px;
+    z-index: 3;
+  } .minigame-container-11 {
+    top: -66px;
+    right: 286px;
+    z-index: 6;
+  } .minigame-container-12 {
+    top: -74px;
+    right: 300px;
+    z-index: 5;
+  }
+}
+
+/* @keyframes trainStart {
+  0% {
+    top: 115px;
+    right: -1442px;
+  } 100% {
+    top: 576px;
+    right: -600px;
+  }
+} @keyframes trainEnd {
+  0% {
+    top: -865px;
+    right: -238px;
+  } 100% {
+    top: -1465px;
+    right: -838px;
+  } 
+} */
+
+
+
+
+
+
+
+/* @media (max-width: 900px) and (orientation: landscape) {
+  .minigame {
+    background-size: 1000px;
+    background-position-x: 0;
+    background-position-y: 0;
+  } .minigame-ship {
+    max-width: 300px;
+    top: 114px;
+    right: 380px;
+  } .minigame-crane-header {
+    max-width: 250px;
+    top: 106px;
+    right: 352px;
+  } .minigame-crane-footer {
+    max-width: 130px;
+    top: 158px;
+    right: 394px;
+  }
+} */
+/* @media (max-width: 900px) and (min-width: 705px) and (min-height: 500px) {
+  .minigame {
+    background-size: 1400px;
+    background-position-x: -140px;
+    background-position-y: -47px; 
+    //background-position-x: -190px;
+    //background-position-y: -200px
+  } .minigame-ship {
+    max-width: 440px;
+    top: 135px;
+    right: 380px;
+  } .minigame-crane-header {
+    top: 90px;
+    right: 345px;
+  } .minigame-crane-footer {
+    right: 394px;
+    top: 160px;
+  } .minigame-containers-block {
+    top: 315px;
+    right: -163px;
+  }
+} */
