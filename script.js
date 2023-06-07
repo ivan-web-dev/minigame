@@ -38,7 +38,21 @@ let objects = {
   ship, craneHeader, craneFooter
 };
 
-function elementPosition() {
+function mainFunc() {
+  function randomSpawnContainers() {
+    let containers = document.querySelector(".minigame-containers-block"); // Получаем блок с контейнерами 
+    let containerColors = ["red", "blue", "yellow"]; // Создаем список доступных цветов
+    let containerQuantity = 12 + 1; // Количество созданных контейнеров
+
+    for (let i = 1; i < containerQuantity; i++) { // Цикл до количества контейнеров
+      let containerColorNow = Math.floor(Math.random() * 3); // Получаем рандомный индекс массива
+
+      containerColorNow = containerColors[containerColorNow]; // Получаем цвет по индексу
+
+      containers.innerHTML += `<img src="./images/container-${containerColorNow}.png" class="minigame-container minigame-container-${i}" alt="">`; // Создаем контейнер
+    }
+  } randomSpawnContainers();
+
   function calculateProperties(size) {
     for (const [key, value] of Object.entries(objects)) { // получаем "ключ: значение"
       value.sizeWidthNow = document.querySelector(`.${value.class}`).clientWidth; // получаем ширину картинки сейчас
@@ -52,30 +66,16 @@ function elementPosition() {
     }
   }
 
-  function mixContainers(pxDifference, railwayAndTrainPosition) {
-    let containerBlock = document.querySelector(".minigame-containers-block"); // получаем блок с контейнерами
+  function gameLogic(pxDifference, railwayAndTrainPosition) {
+    let containerBlock = document.querySelector(".minigame-containers-block"); // получаем родительский блок с контейнерами
     let containers = document.querySelectorAll(".minigame-container"); // Получаем все контейнеры
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
     let lockBg = document.querySelector(".minigame-lock"); // получаем блок с затемнением
-    
-    containers.forEach(container => {
-      console.log(container);
-    });
-    
-    
-   /*  function startAnimation() {
-      setTimeout(() => {
-        lockBg.classList.add('minigame-lock_active');
-      }, 6000);
-    } startAnimation(); */
-    
-    
   }
 
   if (document.body.clientWidth < 1921 && document.body.clientWidth >= 1280) {
     let size = 1920 - document.body.clientWidth; // разница начальной ширины экрана от текущей
     calculateProperties(size);
-
     let styleBlock = document.querySelector("#minigame-style");
     let railwayAndTrainBlock = document.querySelector(".minigame-train-block"); // получаем блок с поездом и перевозками
     let railwayAndTrainPosition = {
@@ -87,7 +87,6 @@ function elementPosition() {
         "right": -600
       }
     };
-
     // Прописываю анимацию в тег <style>
     styleBlock.innerHTML += `
       @keyframes trainStart {
@@ -100,8 +99,7 @@ function elementPosition() {
         }
       }
     `;
-
-    //mixContainers(14, railwayAndTrainPosition);
+    gameLogic(14, railwayAndTrainPosition);
     console.log(1280);
   } else if (document.body.clientWidth < 1280 && document.body.clientWidth >= 960) {
     let size = 1280 - document.body.clientWidth; // разница начальной ширины экрана от текущей
@@ -120,18 +118,4 @@ function elementPosition() {
     calculateProperties(size);
     console.log(960 + " + landscape-primary");
   }
-} elementPosition();
-
-function randomSpawnContainers() {
-  let containers = document.querySelector(".minigame-containers-block"); // Получаем блок с контейнерами 
-  let containerColors = ["red", "blue", "yellow"]; // Создаем список доступных цветов
-  let containerQuantity = 12 + 1; // Количество созданных контейнеров
-
-  for (let i = 1; i < containerQuantity; i++) { // Цикл до количества контейнеров
-    let containerColorNow = Math.floor(Math.random() * 3); // Получаем рандомный индекс массива
-
-    containerColorNow = containerColors[containerColorNow]; // Получаем цвет по индексу
-
-    containers.innerHTML += `<img src="./images/container-${containerColorNow}.png" class="minigame-container minigame-container-${i}" alt="">`; // Создаем контейнер
-  }
-} randomSpawnContainers();
+} mainFunc();
