@@ -65,16 +65,28 @@ function mainFunc() {
       value.item.style.right = `${right}px`; // подставляем правильное значение для отступа справа
     }
   }
+  
+  function moveContainer(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock, containerBlock, activeElements) {
+    containerBlock = Number(getComputedStyle(containerBlock).right.replace('px', '').replace('-', ''));
+    let containerPositionX = Number(getComputedStyle(activeElements[0]).right.replace('px', ''));
+    let carriagePositionX = Number(getComputedStyle(activeElements[1]).right.replace('px', '').replace('-', ''));
+    
+    let rightNow = `${(containerBlock + containerPositionX) - (carriagePositionX + railwayAndTrainPosition["100%"]["right"] + activeElements[0].clientWidth + activeElements[1].clientWidth- pxDifference)}px`;
+    activeElements[0].style.right = rightNow;
+    
+    console.log("(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth - scaleDifference) = ", containerBlock, containerPositionX, carriagePositionX, railwayAndTrainPosition["100%"]["right"], activeElements[0].clientWidth, activeElements[1].clientWidth, pxDifference, rightNow);
+  }
 
   function gameLogic(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock) {
-    //let containerBlock = document.querySelector(".minigame-containers-block"); // получаем родительский блок с контейнерами
+    let containerBlock = document.querySelector(".minigame-containers-block"); // получаем родительский блок с контейнерами
     let containers = document.querySelectorAll(".minigame-container"); // Получаем все контейнеры
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
     let lockBg = document.querySelector(".minigame-lock"); // получаем блок с затемнением
-
-    lockBg.classList.add("minigame-lock_active");
+    let activeElements = [];
 
     setTimeout(() => {
+      lockBg.classList.add("minigame-lock_active");
+      
       function FirstAnimateAndClicks() {
         containers.forEach((container) => {
           let containerZIndex = Number(getComputedStyle(container).zIndex);
@@ -83,6 +95,7 @@ function mainFunc() {
 
           container.addEventListener("click", (event) => {
             let containerActive = container;
+            activeElements.push(containerActive);
             railwayAndTrainBlock.style.zIndex = `101`;
 
             containers.forEach((containerNoActive) => {
@@ -101,7 +114,10 @@ function mainFunc() {
 
               carriage.addEventListener("click", (event) => {
                 let carriageActive = carriage;
+                activeElements.push(carriageActive);
 
+                moveContainer(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock, containerBlock, activeElements);
+                
                 railwaysCarriages.forEach((carriageNoActive) => {
                   if (carriageNoActive !== carriageActive) {
                     let carriageZIndexNow = Number(getComputedStyle(carriageNoActive).zIndex);
@@ -118,13 +134,15 @@ function mainFunc() {
       //let rightNow = `${(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth + container.clientWidth - scaleDifference)}px`;
       //container.style.right = rightNow;
 
-      console.log("(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth - scaleDifference) = ", containerBlock, containerPositionX, carriagePositionX, railwaysCarriagesBlock, carriage.clientWidth, scaleDifference);
+      //console.log("(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth - scaleDifference) = ", containerBlock, containerPositionX, carriagePositionX, railwaysCarriagesBlock, carriage.clientWidth, scaleDifference);
     }, 1000);
   };
 
   if (document.body.clientWidth < 1921 && document.body.clientWidth >= 1280) {
     let size = 1920 - document.body.clientWidth; // разница начальной ширины экрана от текущей
+    
     calculateProperties(size);
+    
     let styleBlock = document.querySelector("#minigame-style");
     let railwayAndTrainBlock = document.querySelector(".minigame-train-block"); // получаем блок с поездом и перевозками
     let railwayAndTrainPosition = {
@@ -133,9 +151,10 @@ function mainFunc() {
         "right": Number(getComputedStyle(railwayAndTrainBlock).right),
       }, "100%": {
         "top": 576,
-        "right": -600
+        "right": 600
       }
     };
+    
     // Прописываю анимацию в тег <style>
     styleBlock.innerHTML += `
       @keyframes trainStart {
@@ -148,6 +167,7 @@ function mainFunc() {
         }
       }
     `;
+    
     gameLogic(14, railwayAndTrainPosition, railwayAndTrainBlock);
     console.log(1280);
   } else if (document.body.clientWidth < 1280 && document.body.clientWidth >= 960) {
