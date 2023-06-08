@@ -66,18 +66,42 @@ function mainFunc() {
     }
   }
   
-  function moveContainer(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock, containerBlock, activeElements) {
+  function moveContainer(pxDifference, railwayAndTrainPosition, containerBlock, activeElements, styleBlock) {
     containerBlock = Number(getComputedStyle(containerBlock).right.replace('px', '').replace('-', ''));
     let containerPositionX = Number(getComputedStyle(activeElements[0]).right.replace('px', ''));
     let carriagePositionX = Number(getComputedStyle(activeElements[1]).right.replace('px', '').replace('-', ''));
     
     let rightNow = `${(containerBlock + containerPositionX) - (carriagePositionX + railwayAndTrainPosition["100%"]["right"] + activeElements[0].clientWidth + activeElements[1].clientWidth- pxDifference)}px`;
-    activeElements[0].style.right = rightNow;
+    //activeElements[0].style.right = rightNow;
     
-    console.log("(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth - scaleDifference) = ", containerBlock, containerPositionX, carriagePositionX, railwayAndTrainPosition["100%"]["right"], activeElements[0].clientWidth, activeElements[1].clientWidth, pxDifference, rightNow);
+    styleBlock.innerHTML += `
+      @keyframes moveContainer {
+        0% {
+          top: ${getComputedStyle(activeElements[0]).top};
+          right: ${getComputedStyle(activeElements[0]).right};
+        } 33% {
+          top: ${-220}px;
+          right: ${getComputedStyle(activeElements[0]).right};
+        } 66% {
+          top: ${-30}px;
+          right: ${rightNow};
+        } 100% {
+          top: ${35}px;
+          right: ${rightNow};
+        }
+      } .animation1 {
+        animation-name: moveContainer;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+      }
+    `;
+    activeElements[0].classList.add("animation1");
+    
+    //console.log("(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth - scaleDifference) = ", containerBlock, containerPositionX, carriagePositionX, railwayAndTrainPosition["100%"]["right"], activeElements[0].clientWidth, activeElements[1].clientWidth, pxDifference, rightNow);
   }
 
-  function gameLogic(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock) {
+  function gameLogic(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock, styleBlock) {
     let containerBlock = document.querySelector(".minigame-containers-block"); // получаем родительский блок с контейнерами
     let containers = document.querySelectorAll(".minigame-container"); // Получаем все контейнеры
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
@@ -116,7 +140,7 @@ function mainFunc() {
                 let carriageActive = carriage;
                 activeElements.push(carriageActive);
 
-                moveContainer(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock, containerBlock, activeElements);
+                moveContainer(pxDifference, railwayAndTrainPosition, containerBlock, activeElements, styleBlock);
                 
                 railwaysCarriages.forEach((carriageNoActive) => {
                   if (carriageNoActive !== carriageActive) {
@@ -131,10 +155,6 @@ function mainFunc() {
           });
         });
       }; FirstAnimateAndClicks();
-      //let rightNow = `${(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth + container.clientWidth - scaleDifference)}px`;
-      //container.style.right = rightNow;
-
-      //console.log("(containerBlock + containerPositionX) - (carriagePositionX + railwaysCarriagesBlock + carriage.clientWidth - scaleDifference) = ", containerBlock, containerPositionX, carriagePositionX, railwaysCarriagesBlock, carriage.clientWidth, scaleDifference);
     }, 1000);
   };
 
@@ -168,7 +188,7 @@ function mainFunc() {
       }
     `;
     
-    gameLogic(14, railwayAndTrainPosition, railwayAndTrainBlock);
+    gameLogic(14, railwayAndTrainPosition, railwayAndTrainBlock, styleBlock);
     console.log(1280);
   } else if (document.body.clientWidth < 1280 && document.body.clientWidth >= 960) {
     let size = 1280 - document.body.clientWidth; // разница начальной ширины экрана от текущей
