@@ -128,29 +128,32 @@ function mainFunc() {
           container.addEventListener("click", (event) => { // при клике на какой-либо контейнер
             let containerActive = container; // сохраняем выбранный контейнер
             
-            console.log(activeElements);
+            //console.log(activeElements);
             if (activeElements.length || activeElements == undefined) {
               alert("Вы уже выбрали контейнер, теперь выберите транспорт");
+              console.log("alert: " + activeElements);
             } else {
               activeElements.push(containerActive); // добавляем его в массив
               
-              console.log(activeElements);
+              containers.forEach((containerNoActive) => { // перебираем контейнеры
+                if (containerNoActive !== containerActive) { // если контейнер не выбранный
+                  let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
+  
+                  containerNoActive.classList.remove("minigame-container_bg"); // удаляем свечение
+                  containerNoActive.style.zIndex = `${containerZIndexNow - 100}`; // уменьшаем z-index
+                } else { // если контейнер выбранный
+                  let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
+  
+                  containerNoActive.style.zIndex = `${containerZIndexNow + 10}`; // уменьшаем z-index
+                }
+              });
+              
+              console.log("else: " + activeElements);
             }
             
             railwayAndTrainBlock.style.zIndex = `101`; // увеличиваем z-index блока с поездом
 
-            containers.forEach((containerNoActive) => { // перебираем контейнеры
-              if (containerNoActive !== containerActive) { // если контейнер не выбранный
-                let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
-
-                containerNoActive.classList.remove("minigame-container_bg"); // удаляем свечение
-                containerNoActive.style.zIndex = `${containerZIndexNow - 100}`; // уменьшаем z-index
-              } else { // если контейнер выбранный
-                let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
-
-                containerNoActive.style.zIndex = `${containerZIndexNow + 10}`; // уменьшаем z-index
-              }
-            });
+            
 
             railwaysCarriages.forEach((carriage) => { // пробегаемся по перевозкам
               let carriageZIndex = Number(getComputedStyle(carriage).zIndex); // получаем z-index перевозки
