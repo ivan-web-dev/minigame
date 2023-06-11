@@ -163,9 +163,9 @@
   right: 325px;
   z-index: 0;
 } .minigame-container-7 {
-  top: -126px;
-  right: 203px;
-  z-index: 3;
+  top: 0px;
+  right: 417px;
+  z-index: 2;
 } .minigame-container-8 {
   top: -113px;
   right: 180px;
@@ -179,9 +179,9 @@
   right: 191px;
   z-index: 6;
 } .minigame-container-11 {
-  top: 0px;
-  right: 417px;
-  z-index: 2;
+  top: -126px;
+  right: 203px;
+  z-index: 3;
 } .minigame-container-12 {
   top: -132px;
   right: 165px;
@@ -234,9 +234,9 @@
     right: 373px;
     z-index: 0;
   } .minigame-container-7 {
-    top: 0px;
-    right: 418px;
-    z-index: 2;
+    top: -70px;
+    right: 236px;
+    z-index: 6;
   } .minigame-container-8 {
     top: -44px;
     right: 227px;
@@ -250,9 +250,9 @@
     right: 263px;
     z-index: 3;
   } .minigame-container-11 {
-    top: -70px;
-    right: 236px;
-    z-index: 6;
+    top: 0px;
+    right: 418px;
+    z-index: 2;
   } .minigame-container-12 {
     top: -81px;
     right: 256px;
@@ -317,9 +317,9 @@
     right: 385px;
     z-index: 5;
   } .minigame-container-7 {
-    top: 0px;
-    right: 418px;
-    z-index: 2;
+    top: -68px;
+    right: 296px;
+    z-index: 6;
   } .minigame-container-8 {
     top: -49px;
     right: 290px;
@@ -333,9 +333,9 @@
     right: 316px;
     z-index: 3;
   } .minigame-container-11 {
-    top: -68px;
-    right: 296px;
-    z-index: 6;
+    top: 0px;
+    right: 418px;
+    z-index: 2;
   } .minigame-container-12 {
     top: -76px;
     right: 310px;

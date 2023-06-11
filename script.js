@@ -49,7 +49,7 @@ function mainFunc() {
 
       containerColorNow = containerColors[containerColorNow]; // Получаем цвет по индексу
 
-      containers.innerHTML += `<img src="./images/container-${containerColorNow}.png" class="minigame-container minigame-container-${i}" alt="">`; // Создаем контейнер
+      containers.innerHTML += `<img src="./images/container-${containerColorNow}.png" class="minigame-container minigame-container-${i}" alt="" id="${i}">`; // Создаем контейнер
     }
   } randomSpawnContainers();
 
@@ -66,10 +66,12 @@ function mainFunc() {
     }
   }
   
-  function moveContainer(railwayAndTrainPosition, activeElements, styleBlock, container33, container66) {
+  function moveContainer(containerBlock, railwayAndTrainPosition, activeElements, styleBlock, container33, container66) {
     if (activeElements[0].classList.contains("minigame-container") && activeElements[1].classList.contains("minigame-railway-carriage")) {
       let positionX = activeElements[1].getAttribute("position-x");
       let positionY = activeElements[1].getAttribute("position-y");
+      
+      containerID = activeElements[0].getAttribute("id");
       
       console.log(positionX, positionY);
       
@@ -77,7 +79,7 @@ function mainFunc() {
       container66 = container33 - (positionY);
   
       styleBlock.innerHTML += `
-        @keyframes moveContainer {
+        @keyframes moveContainer${containerID} {
           0% {
             top: ${getComputedStyle(activeElements[0]).top};
             right: ${getComputedStyle(activeElements[0]).right};
@@ -91,15 +93,28 @@ function mainFunc() {
             top: ${positionY}px;
             right: ${positionX}px;
           }
-        } .animation-1 {
-          animation-name: moveContainer;
+        } .animation-${containerID} {
+          animation-name: moveContainer${containerID};
           animation-duration: 3s;
           animation-timing-function: linear;
           animation-fill-mode: forwards;
         }
       `; // создаем анимацию
-      activeElements[0].classList.add("animation-1"); // Добавляем анимацию контейнеру
+      activeElements[0].classList.add(`animation-${containerID}`); // Добавляем анимацию контейнеру
+      
+      let OldContainers = containerBlock.querySelectorAll(".minigame-container");
+      let containers = [];
+      
+      OldContainers.forEach(container => {
+        if (container !== activeElements[0]) {
+          containers.push(container);
+        };
+      });
+      
       activeElements = []; // Очищаем массив с выбранными элементами
+      
+      console.log(containers);
+      return containers;
     } else {
       alert("Выберите сначала контейнер, а потом вагонетку!");
       activeElements = []; // Очищаем массив с выбранными элементами
@@ -114,18 +129,18 @@ function mainFunc() {
     let activeElements = []; // создаем массив для выбранных элементов
   
     setTimeout(() => { // ждем первую анимацию
-      lockBg.classList.add("minigame-lock_active"); // Подставляем затемнение
+      //lockBg.classList.add("minigame-lock_active"); // Подставляем затемнение
   
       function FirstAnimateAndClicks() {
         containers.forEach((container) => { // пробегаемся по контейнерам
-          let containerActive = false; // создаем переменную для выбранного контейнера
+          //let containerActive = false; // создаем переменную для выбранного контейнера
           let containerZIndex = Number(getComputedStyle(container).zIndex); // получаем z-index каждого контейнера
           container.classList.add("minigame-container_bg"); // Даем контейнерам свечение
           container.style.zIndex = `${containerZIndex + 101}`; // Подставляем z-index выше затемнения и относительно z-index'a контейнеров
   
           container.addEventListener("click", (event) => { // при клике на какой-либо контейнер
-            if (containerActive == false) {
-              containerActive = container; // сохраняем выбранный контейнер
+            //if (containerActive == false) {
+              let containerActive = container; // сохраняем выбранный контейнер
               activeElements.push(containerActive); // добавляем его в массив
               railwayAndTrainBlock.style.zIndex = `101`; // увеличиваем z-index блока с поездом
               
@@ -159,8 +174,7 @@ function mainFunc() {
                   let carriageActive = carriage; // сохраняем выбранную перевозку
                   activeElements.push(carriageActive); // добавляем её в массив
   
-                  console.log(activeElements);
-                  moveContainer(railwayAndTrainPosition, activeElements, styleBlock); // вызываем функцию
+                  containers = moveContainer(containerBlock, railwayAndTrainPosition, activeElements, styleBlock); // вызываем функцию
   
                   railwaysCarriages.forEach((carriageNoActive) => { // пробегаемся по всем перевозкам
                     if (carriageNoActive !== carriageActive) { // если не активная перевозка
@@ -178,9 +192,9 @@ function mainFunc() {
                   activeElements = []; // Очищаем массив с выбранными элементами
                 });
               });
-            } else {
+            /* } else {
               alert("Вы уже выбрали контейнер, теперь выберите вагонетку!");
-            }
+            } */
           });
         });
       }; FirstAnimateAndClicks();
