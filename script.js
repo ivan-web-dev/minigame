@@ -71,7 +71,7 @@ function mainFunc() {
       carriageCount = activeElements[1].getAttribute("count");
       let positionX;
       let positionY;
-      
+
       if (Number(carriageCount) == 1) {
         positionX = activeElements[1].getAttribute("position-x2");
         positionY = activeElements[1].getAttribute("position-y2");
@@ -79,7 +79,7 @@ function mainFunc() {
         positionX = activeElements[1].getAttribute("position-x");
         positionY = activeElements[1].getAttribute("position-y");
       }
-      
+
 
       containerID = activeElements[0].getAttribute("id");
 
@@ -113,8 +113,7 @@ function mainFunc() {
       activeElements[0].classList.add(`animation-${containerID}`); // Добавляем анимацию контейнеру
       activeElements[1].setAttribute("count", 1);
       usedElements.push(activeElements[0]);
-      
-      console.log(usedElements);
+
       activeElements = []; // Очищаем массив с выбранными элементами
     } else {
       //alert("Выберите сначала контейнер, а потом вагонетку!");
@@ -131,7 +130,7 @@ function mainFunc() {
     let usedElements = [];
 
     setTimeout(() => { // ждем первую анимацию
-      lockBg.classList.add("minigame-lock_active"); // Подставляем затемнение
+      //lockBg.classList.add("minigame-lock_active"); // Подставляем затемнение
 
       function FirstAnimateAndClicks() {
         containers.forEach((container) => { // пробегаемся по контейнерам
@@ -151,33 +150,33 @@ function mainFunc() {
 
           container.addEventListener("click", (event) => { // при клике на какой-либо контейнер
             let containerActive = container; // сохраняем выбранный контейнер
-            
+
             //console.log(activeElements);
             if (activeElements.length || activeElements == undefined) {
               alert("Вы уже выбрали контейнер, теперь выберите транспорт");
               console.log("alert: " + activeElements);
             } else {
               activeElements.push(containerActive); // добавляем его в массив
-              
+
               containers.forEach((containerNoActive) => { // перебираем контейнеры
                 if (containerNoActive !== containerActive) { // если контейнер не выбранный
                   let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
-  
+
                   containerNoActive.classList.remove("minigame-container_bg"); // удаляем свечение
                   containerNoActive.style.zIndex = `${containerZIndexNow - 100}`; // уменьшаем z-index
                 } else { // если контейнер выбранный
                   let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
-  
+
                   containerNoActive.style.zIndex = `${containerZIndexNow + 10}`; // уменьшаем z-index
                 }
               });
-              
+
               //console.log("else: " + activeElements);
             }
-            
+
             railwayAndTrainBlock.style.zIndex = `101`; // увеличиваем z-index блока с поездом
 
-            
+
 
             railwaysCarriages.forEach((carriage) => { // пробегаемся по перевозкам
               let carriageZIndex = Number(getComputedStyle(carriage).zIndex); // получаем z-index перевозки
@@ -187,6 +186,19 @@ function mainFunc() {
               carriage.addEventListener("click", (event) => { // при клике на перевозку
                 let carriageActive = carriage; // сохраняем выбранную перевозку
                 activeElements.push(carriageActive); // добавляем её в массив
+                
+                let craneBlock = document.querySelector(".crane-block");
+                let carriageID = carriage.getAttribute("id");
+                if (carriageID == 1) {
+                  craneBlock.style.top = `0`;
+                  craneBlock.style.left = `0`;
+                } else if (carriageID == 2) {
+                  craneBlock.style.top = `-80px`;
+                  craneBlock.style.left = `145px`; 
+                } else {
+                  craneBlock.style.top = `-160px`;
+                  craneBlock.style.left = `290px`; 
+                }
 
                 moveContainer(railwayAndTrainPosition, activeElements, styleBlock, container33, usedElements); // вызываем функцию
 
@@ -202,28 +214,12 @@ function mainFunc() {
                     carriageNoActive.style.zIndex = `${carriageZIndexNow - 101}`; // уменьшаем z-index
                   }
                 });
-                
-                /* if (usedElements.length > 1) {
-                  usedElements.forEach((element) => {
-                    if (element !== container) {
-                      let containerZIndex = Number(getComputedStyle(container).zIndex); // получаем z-index каждого контейнера
-                      container.classList.add("minigame-container_bg"); // Даем контейнерам свечение
-                      container.style.zIndex = `${containerZIndex + 101}`; // Подставляем z-index выше затемнения и относительно z-index'a контейнеров
-                    }
-                  });
-                } else {
-                  let containerZIndex = Number(getComputedStyle(container).zIndex); // получаем z-index каждого контейнера
-                  container.classList.add("minigame-container_bg"); // Даем контейнерам свечение
-                  container.style.zIndex = `${containerZIndex + 101}`; // Подставляем z-index выше затемнения и относительно z-index'a контейнеров
-                } */
 
                 containers.forEach((containerNoActive) => { // перебираем контейнеры
-                  if (containerNoActive !== containerActive) { // если контейнер не выбранный
-                    let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
+                  let containerZIndexNow = Number(getComputedStyle(containerNoActive).zIndex); // получаем z-index контейнера
 
-                    containerNoActive.classList.add("minigame-container_bg"); // удаляем свечение
-                    containerNoActive.style.zIndex = `${containerZIndexNow + 100}`; // уменьшаем z-index
-                  }
+                  containerNoActive.classList.add("minigame-container_bg"); // удаляем свечение
+                  containerNoActive.style.zIndex = `${containerZIndexNow + 100}`; // уменьшаем z-index
                 });
 
                 activeElements = []; // Очищаем массив с выбранными элементами
@@ -281,7 +277,7 @@ function mainFunc() {
         carriage.setAttribute("position-X", "-207");
         carriage.setAttribute("position-Y", "-47");
         carriage.setAttribute("position-X2", "-128");
-        carriage.setAttribute("position-Y2", "-5"); 
+        carriage.setAttribute("position-Y2", "-5");
       }
     });
 
