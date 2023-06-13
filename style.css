@@ -89,6 +89,7 @@
   top: 62px;
   right: 757px;
   z-index: 221;
+  pointer-events: none;
 } .minigame-crane-footer {
   position: absolute;
   top: 194px;
@@ -101,6 +102,20 @@
   right: 986px;
   z-index: 0;
   pointer-events: none;
+} .rope {
+  position: absolute;
+  top: 100px;
+  left: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 219;
+} .rope-vertical {
+  width: 5px;
+  height: 200px;
+} .rope-container {
+  margin-top: -16px;
+  margin-right: -6px;
 } .minigame-car {
   position: absolute;
 } .minigame-train-block {

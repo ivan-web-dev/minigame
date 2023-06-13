@@ -71,13 +71,18 @@ function mainFunc() {
       carriageCount = activeElements[1].getAttribute("count");
       let positionX;
       let positionY;
+      let craneBlock = document.querySelector(".crane-block");
+      let craneBlockPosition = craneBlock.getAttribute("cranePosition");
 
-      if (Number(carriageCount) == 1) {
+      if (Number(carriageCount) == 0) {
+        positionX = activeElements[1].getAttribute("position-x");
+        positionY = activeElements[1].getAttribute("position-y");
+      } else if (Number(carriageCount) == 1) {
         positionX = activeElements[1].getAttribute("position-x2");
         positionY = activeElements[1].getAttribute("position-y2");
       } else {
-        positionX = activeElements[1].getAttribute("position-x");
-        positionY = activeElements[1].getAttribute("position-y");
+        alert("Перевозка заполнена");
+        return;
       }
 
 
@@ -85,7 +90,15 @@ function mainFunc() {
 
       //console.log(positionX, positionY);
       //console.log(activeElements[0], activeElements[1]);
-
+      
+      if (craneBlockPosition == 1) {
+        container33 = container33;
+      } else if (craneBlockPosition == 2) {
+        container33 = container33 + 110;
+      } else {
+        container33 = container33 + 220;
+      }
+      
       container66 = container33 - (positionY);
 
       styleBlock.innerHTML += `
@@ -111,7 +124,7 @@ function mainFunc() {
         }
       `; // создаем анимацию
       activeElements[0].classList.add(`animation-${containerID}`); // Добавляем анимацию контейнеру
-      activeElements[1].setAttribute("count", 1);
+      activeElements[1].setAttribute("count", Number(carriageCount) + 1);
       usedElements.push(activeElements[0]);
 
       activeElements = []; // Очищаем массив с выбранными элементами
@@ -192,12 +205,15 @@ function mainFunc() {
                 if (carriageID == 1) {
                   craneBlock.style.top = `0`;
                   craneBlock.style.left = `0`;
+                  craneBlock.setAttribute("cranePosition", 1);
                 } else if (carriageID == 2) {
                   craneBlock.style.top = `-80px`;
-                  craneBlock.style.left = `145px`; 
+                  craneBlock.style.left = `145px`;
+                  craneBlock.setAttribute("cranePosition", 2);
                 } else {
                   craneBlock.style.top = `-160px`;
-                  craneBlock.style.left = `290px`; 
+                  craneBlock.style.left = `290px`;
+                  craneBlock.setAttribute("cranePosition", 3);
                 }
 
                 moveContainer(railwayAndTrainPosition, activeElements, styleBlock, container33, usedElements); // вызываем функцию
