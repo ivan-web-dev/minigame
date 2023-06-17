@@ -83,7 +83,7 @@
   position: relative;
   top: 0;
   left: 0;
-  transition: 0.5s;
+  transition: 1s;
 } .minigame-crane-header {
   position: absolute;
   top: 62px;
@@ -110,12 +110,43 @@
   flex-direction: column;
   align-items: center;
   z-index: 219;
+  height: 200px;
 } .rope-vertical {
   width: 5px;
-  height: 200px;
+  height: 100%;
 } .rope-container {
   margin-top: -16px;
   margin-right: -6px;
+} .ropeStart {
+  animation-name: ropeStart;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+} .ropeEnd {
+  animation-name: ropeEnd;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}  .ropeStart2 {
+  animation-name: ropeStart2;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+} .ropeEnd2 {
+  animation-name: ropeEnd2;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+} .ropeStop {
+  animation-play-state: paused;
 } .minigame-car {
   position: absolute;
 } .minigame-train-block {
@@ -163,53 +194,53 @@
 } .minigame-container_bg {
   box-shadow: 0px 0px 10px #fff;
 } .minigame-container-1 {
+  top: 0px;
+  right: 417px;
+  z-index: 9;
+} .minigame-container-2 {
   top: 14px;
   right: 393px;
-  z-index: 3;
-} .minigame-container-2 {
+  z-index: 10;
+} .minigame-container-3 {
   top: 29px;
   right: 368px;
-  z-index: 4;
-} .minigame-container-3 {
+  z-index: 11;
+} .minigame-container-4 {
   top: 44px;
   right: 342px;
-  z-index: 5;
-} .minigame-container-4 {
-  top: 4px;
-  right: 270px;
-  z-index: 2;
+  z-index: 12;
 } .minigame-container-5 {
-  top: -10px;
-  right: 296px;
-  z-index: 1;
+  top: -40px;
+  right: 350px;
+  z-index: 5;
 } .minigame-container-6 {
   top: -26px;
   right: 325px;
-  z-index: 0;
-} .minigame-container-7 {
-  top: 0px;
-  right: 417px;
-  z-index: 2;
-} .minigame-container-8 {
-  top: -113px;
-  right: 180px;
-  z-index: 4;
-} .minigame-container-9 {
-  top: -100px;
-  right: 157px;
-  z-index: 5;
-} .minigame-container-10 {
-  top: -147px;
-  right: 191px;
   z-index: 6;
+} .minigame-container-7 {
+  top: -10px;
+  right: 296px;
+  z-index: 7;
+} .minigame-container-8 {
+  top: 4px;
+  right: 270px;
+  z-index: 8;
+} .minigame-container-9 {
+  top: -78px;
+  right: 282px;
+  z-index: 1;
+} .minigame-container-10 {
+  top: -63px;
+  right: 256px;
+  z-index: 2;
 } .minigame-container-11 {
-  top: -126px;
-  right: 203px;
+  top: -48px;
+  right: 230px;
   z-index: 3;
 } .minigame-container-12 {
-  top: -132px;
-  right: 165px;
-  z-index: 7;
+  top: -33px;
+  right: 203px;
+  z-index: 4;
 }
 
 @media (max-width: 1279px) {
@@ -445,6 +476,80 @@
     right: -838px;
   } 
 } */
+
+@keyframes ropeStart {
+  0% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 25% {
+    top: 100px;
+    left: 580px;
+    height: 300px;
+  } 50% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 75% {
+    top: 220px;
+    left: 800px;
+    height: 200px;
+  } 100% {
+    top: 220px;
+    left: 800px;
+    height: 370px;
+  }
+} @keyframes ropeEnd {
+  0% {
+    top: 220px;
+    left: 800px;
+    height: 370px;
+  } 50% {
+    top: 220px;
+    left: 800px;
+    height: 200px;
+  } 100% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 
+} @keyframes ropeStart2 {
+  0% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 25% {
+    top: 100px;
+    left: 580px;
+    height: 300px;
+  } 50% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 75% {
+    top: 263px;
+    left: 870px;
+    height: 200px;
+  } 100% {
+    top: 263px;
+    left: 870px;
+    height: 287px;
+  }
+} @keyframes ropeEnd2 {
+  0% {
+    top: 263px;
+    left: 870px;
+    height: 287px;
+  } 50% {
+    top: 263px;
+    left: 870px;
+    height: 200px;
+  } 100% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 
+}
 
 
 

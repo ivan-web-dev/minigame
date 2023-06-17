@@ -65,25 +65,53 @@ function mainFunc() {
       value.item.style.right = `${right}px`; // подставляем правильное значение для отступа справа
     }
   }
+  
+  function moveCrane(activeElements, craneBlock) {
+    let carriageID = activeElements[1].getAttribute("id");
+    
+    if (carriageID == 1) {
+      craneBlock.style.top = `0`;
+      craneBlock.style.left = `0`;
+      craneBlock.setAttribute("cranePosition", 1);
+    } else if (carriageID == 2) {
+      setTimeout(() => {
+        craneBlock.style.top = `-80px`;
+        craneBlock.style.left = `145px`;
+      }, 1000);
+      craneBlock.setAttribute("cranePosition", 2);
+    } else {
+      setTimeout(() => {
+        craneBlock.style.top = `-160px`;
+        craneBlock.style.left = `290px`;
+      }, 1000);
+      craneBlock.setAttribute("cranePosition", 3);
+    };
+  }
 
-  function moveContainer(railwayAndTrainPosition, activeElements, styleBlock, container33, usedElements, containers) {
+  function moveContainer(railwayAndTrainPosition, activeElements, styleBlock, containerPos1, containerPos2, usedElements, containers) {
     if (activeElements[0].classList.contains("minigame-container") && activeElements[1].classList.contains("minigame-railway-carriage")) {
       carriageCount = activeElements[1].getAttribute("count");
       let positionX;
       let positionY;
       let craneBlock = document.querySelector(".crane-block");
       let craneBlockPosition = craneBlock.getAttribute("cranePosition");
+      let rope = document.querySelector(".rope");
+      let ropeAnim;
 
       if (Number(carriageCount) == 0) {
         positionX = activeElements[1].getAttribute("position-x");
         positionY = activeElements[1].getAttribute("position-y");
+        ropeAnim = 1;
       } else if (Number(carriageCount) == 1) {
         positionX = activeElements[1].getAttribute("position-x2");
         positionY = activeElements[1].getAttribute("position-y2");
+        ropeAnim = 2;
       } else {
         alert("Перевозка заполнена");
         return;
       }
+      
+      moveCrane(activeElements, craneBlock);
 
       containerID = activeElements[0].getAttribute("id");
 
@@ -91,50 +119,146 @@ function mainFunc() {
       //console.log(activeElements[0], activeElements[1]);
       
       if (craneBlockPosition == 1) {
-        container33 = container33;
+        containerPos1 = containerPos1;
+        containerPos2 = containerPos2;
       } else if (craneBlockPosition == 2) {
-        container33 = container33 + 110;
+        containerPos1 = containerPos1 - 79;
+        containerPos2 = containerPos2 - 79;
       } else {
-        container33 = container33 + 220;
+        console.log(containerPos1);
+        containerPos1 = containerPos1 - 143;
+        containerPos2 = containerPos2;
+      }
+
+      if (ropeAnim == 1) {
+        rope.classList.add("ropeStart");
+        
+        if (craneBlockPosition == 2) {
+          setTimeout(() => {
+            rope.classList.add("ropeStop");
+          }, 2000);
+          setTimeout(() => {
+            rope.classList.remove("ropeStop");
+          }, 3000);
+        };
+        
+        rope.classList.remove("ropeEnd");
+        rope.classList.remove("ropeEnd2");
+      } else {
+        rope.classList.add("ropeStart2");
+        rope.classList.remove("ropeEnd2");
+        rope.classList.remove("ropeEnd");
       }
       
-      container66 = container33 - (positionY);
-
-      styleBlock.innerHTML += `
-        @keyframes moveContainer${containerID} {
-          0% {
-            top: ${getComputedStyle(activeElements[0]).top};
-            right: ${getComputedStyle(activeElements[0]).right};
-          } 33% {
-            top: -${container33}px;
-            right: ${getComputedStyle(activeElements[0]).right};
-          } 66% {
-            top: -${container66}px;
-            right: ${positionX}px;
-          } 100% {
-            top: ${positionY}px;
-            right: ${positionX}px;
+      if (craneBlockPosition == 1) {
+        styleBlock.innerHTML += `
+          @keyframes moveContainer${containerID} {
+            0% {
+              top: ${-68}px;
+              right: ${321}px;
+            } 33% {
+              top: ${-167}px;
+              right: ${321}px;
+            } 66% {
+              top: ${ropeAnim == 1 ? containerPos1 : containerPos2}px;
+              right: ${positionX}px;
+            } 100% {
+              top: ${positionY}px;
+              right: ${positionX}px;
+            }
+          } .animation-${containerID} {
+            animation-name: moveContainer${containerID};
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-delay: 1000ms;
           }
-        } .animation-${containerID} {
-          animation-name: moveContainer${containerID};
-          animation-duration: 3s;
-          animation-timing-function: linear;
-          animation-fill-mode: forwards;
-        }
-      `; // создаем анимацию
+        `; // создаем анимацию
+      }  else if (craneBlockPosition == 2) {
+        styleBlock.innerHTML += `
+          @keyframes moveContainer${containerID} {
+            0% {
+              top: ${-68}px;
+              right: ${321}px;
+            } 25% {
+              top: ${-167}px;
+              right: ${321}px;
+            } 50% {
+              top: ${-247}px;
+              right: ${174}px;
+            } 75% {
+              top: ${ropeAnim == 1 ? containerPos1 : containerPos2}px;
+              right: ${positionX}px;
+            } 100% {
+              top: ${positionY}px;
+              right: ${positionX}px;
+            }
+          } .animation-${containerID} {
+            animation-name: moveContainer${containerID};
+            animation-duration: 4s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-delay: 1000ms;
+          }
+        `; // создаем анимацию
+      } else {
+        styleBlock.innerHTML += `
+          @keyframes moveContainer${containerID} {
+            0% {
+              top: ${-68}px;
+              right: ${321}px;
+            } 25% {
+              top: ${-167}px;
+              right: ${321}px;
+            } 50% {
+              top: ${-226}px;
+              right: ${177}px;
+            } 75% {
+              top: ${ropeAnim == 1 ? containerPos1 : containerPos2}px;
+              right: ${positionX}px;
+            } 100% {
+              top: ${positionY}px;
+              right: ${positionX}px;
+            }
+          } .animation-${containerID} {
+            animation-name: moveContainer${containerID};
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-delay: 1000ms;
+          }
+        `; // создаем анимацию
+      }
+      
       activeElements[0].classList.add(`animation-${containerID}`); // Добавляем анимацию контейнеру
       activeElements[1].setAttribute("count", Number(carriageCount) + 1);
       usedElements.push(activeElements[0]);
       //console.log(usedElements);
 
       activeElements = []; // Очищаем массив с выбранными элементами
+      
+      if (ropeAnim == 1) {
+        setTimeout(() => {
+          rope.classList.add("ropeEnd");
+          rope.classList.remove("ropeStart");
+          rope.classList.remove("ropeStart2");
+        }, 4000);
+      } else {
+        setTimeout(() => {
+          rope.classList.add("ropeEnd2");
+          rope.classList.remove("ropeStart2");
+          rope.classList.remove("ropeStart");
+        }, 4000);
+      }
+      
+      
     } else {
       //alert("Выберите сначала контейнер, а потом вагонетку!");
       activeElements = []; // Очищаем массив с выбранными элементами
     }
   }
 
-  function gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, container33) {
+  function gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, containerPos1, containerPos2) {
     let containerBlock = document.querySelector(".minigame-containers-block"); // получаем родительский блок с контейнерами
     let containersAll = document.querySelectorAll(".minigame-container"); // Получаем все контейнеры
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
@@ -206,24 +330,8 @@ function mainFunc() {
                 let newContainers = [];
                 
                 activeElements.push(carriageActive); // добавляем её в массив
-                
-                let craneBlock = document.querySelector(".crane-block");
-                let carriageID = carriage.getAttribute("id");
-                if (carriageID == 1) {
-                  craneBlock.style.top = `0`;
-                  craneBlock.style.left = `0`;
-                  craneBlock.setAttribute("cranePosition", 1);
-                } else if (carriageID == 2) {
-                  craneBlock.style.top = `-80px`;
-                  craneBlock.style.left = `145px`;
-                  craneBlock.setAttribute("cranePosition", 2);
-                } else {
-                  craneBlock.style.top = `-160px`;
-                  craneBlock.style.left = `290px`;
-                  craneBlock.setAttribute("cranePosition", 3);
-                }
 
-                moveContainer(railwayAndTrainPosition, activeElements, styleBlock, container33, usedElements, containers); // вызываем функцию
+                moveContainer(railwayAndTrainPosition, activeElements, styleBlock, containerPos1, containerPos2, usedElements, containers); // вызываем функцию
                 
                 containers.forEach((container) => {
                   let oldContainerID = container.getAttribute("id");
@@ -319,14 +427,15 @@ function mainFunc() {
       } else if (carriage.classList.contains("railway-carriage-3")) {
         carriage.setAttribute("position-X", "-207");
         carriage.setAttribute("position-Y", "-47");
-        carriage.setAttribute("position-X2", "-128");
-        carriage.setAttribute("position-Y2", "-5");
+        carriage.setAttribute("position-X2", "-280");
+        carriage.setAttribute("position-Y2", "-87");
       }
     });
 
-    let container33 = 220;
+    let containerPos1 = -47;
+    let containerPos2 = -4;
 
-    gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, container33);
+    gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, containerPos1, containerPos2);
     console.log(1280);
   } else if (document.body.clientWidth < 1280 && document.body.clientWidth >= 960) {
     let size = 1280 - document.body.clientWidth; // разница начальной ширины экрана от текущей
