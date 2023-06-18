@@ -65,28 +65,6 @@ function mainFunc() {
       value.item.style.right = `${right}px`; // подставляем правильное значение для отступа справа
     }
   }
-  
-  function moveCrane(activeElements, craneBlock) {
-    let carriageID = activeElements[1].getAttribute("id");
-    
-    if (carriageID == 1) {
-      craneBlock.style.top = `0`;
-      craneBlock.style.left = `0`;
-      craneBlock.setAttribute("cranePosition", 1);
-    } else if (carriageID == 2) {
-      setTimeout(() => {
-        craneBlock.style.top = `-80px`;
-        craneBlock.style.left = `145px`;
-      }, 1000);
-      craneBlock.setAttribute("cranePosition", 2);
-    } else {
-      setTimeout(() => {
-        craneBlock.style.top = `-160px`;
-        craneBlock.style.left = `290px`;
-      }, 1000);
-      craneBlock.setAttribute("cranePosition", 3);
-    };
-  }
 
   function moveContainer(railwayAndTrainPosition, activeElements, styleBlock, containerPos1, containerPos2, usedElements, containers) {
     if (activeElements[0].classList.contains("minigame-container") && activeElements[1].classList.contains("minigame-railway-carriage")) {
@@ -94,9 +72,34 @@ function mainFunc() {
       let positionX;
       let positionY;
       let craneBlock = document.querySelector(".crane-block");
-      let craneBlockPosition = craneBlock.getAttribute("cranePosition");
+      let craneBlockPosition;
       let rope = document.querySelector(".rope");
       let ropeAnim;
+      let carriageID = activeElements[1].getAttribute("id");
+    
+      if (carriageID == 1) {
+        craneBlock.style.top = `0`;
+        craneBlock.style.left = `0`;
+        
+        craneBlock.setAttribute("crane-position", 1);
+        craneBlockPosition = 1;
+      } else if (carriageID == 2) {
+        craneBlock.setAttribute("crane-position", 2);
+        craneBlockPosition = 2;
+        
+        setTimeout(() => {
+          craneBlock.style.top = `-80px`;
+          craneBlock.style.left = `145px`;
+        }, 2000);
+      } else {
+        craneBlock.setAttribute("crane-position", 3);
+        craneBlockPosition = 3;
+        
+        setTimeout(() => {
+          craneBlock.style.top = `-160px`;
+          craneBlock.style.left = `290px`;
+        }, 2000);
+      };
 
       if (Number(carriageCount) == 0) {
         positionX = activeElements[1].getAttribute("position-x");
@@ -110,19 +113,19 @@ function mainFunc() {
         alert("Перевозка заполнена");
         return;
       }
-      
-      moveCrane(activeElements, craneBlock);
 
       containerID = activeElements[0].getAttribute("id");
 
       //console.log(positionX, positionY);
       //console.log(activeElements[0], activeElements[1]);
       
+      console.log(craneBlockPosition);
       if (craneBlockPosition == 1) {
         containerPos1 = containerPos1;
         containerPos2 = containerPos2;
       } else if (craneBlockPosition == 2) {
         containerPos1 = containerPos1 - 79;
+        console.log(containerPos1);
         containerPos2 = containerPos2 - 79;
       } else {
         console.log(containerPos1);
@@ -222,7 +225,7 @@ function mainFunc() {
             }
           } .animation-${containerID} {
             animation-name: moveContainer${containerID};
-            animation-duration: 3s;
+            animation-duration: 4s;
             animation-timing-function: linear;
             animation-fill-mode: forwards;
             animation-delay: 1000ms;
@@ -242,13 +245,13 @@ function mainFunc() {
           rope.classList.add("ropeEnd");
           rope.classList.remove("ropeStart");
           rope.classList.remove("ropeStart2");
-        }, 4000);
+        }, craneBlockPosition == 1 ? 4000 : 5000);
       } else {
         setTimeout(() => {
           rope.classList.add("ropeEnd2");
           rope.classList.remove("ropeStart2");
           rope.classList.remove("ropeStart");
-        }, 4000);
+        }, craneBlockPosition == 1 ? 4000 : 5000);
       }
       
       

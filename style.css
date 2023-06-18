@@ -83,7 +83,7 @@
   position: relative;
   top: 0;
   left: 0;
-  transition: 1s;
+  transition: 1s linear;
 } .minigame-crane-header {
   position: absolute;
   top: 62px;
