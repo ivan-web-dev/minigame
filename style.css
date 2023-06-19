@@ -196,51 +196,51 @@
 } .minigame-container-1 {
   top: 0px;
   right: 417px;
-  z-index: 9;
+  z-index: 21;
 } .minigame-container-2 {
   top: 14px;
   right: 393px;
-  z-index: 10;
+  z-index: 22;
 } .minigame-container-3 {
   top: 29px;
   right: 368px;
-  z-index: 11;
+  z-index: 23;
 } .minigame-container-4 {
   top: 44px;
   right: 342px;
-  z-index: 12;
+  z-index: 24;
 } .minigame-container-5 {
   top: -40px;
   right: 350px;
-  z-index: 5;
+  z-index: 17;
 } .minigame-container-6 {
   top: -26px;
   right: 325px;
-  z-index: 6;
+  z-index: 18;
 } .minigame-container-7 {
   top: -10px;
   right: 296px;
-  z-index: 7;
+  z-index: 19;
 } .minigame-container-8 {
   top: 4px;
   right: 270px;
-  z-index: 8;
+  z-index: 20;
 } .minigame-container-9 {
   top: -78px;
   right: 282px;
-  z-index: 1;
+  z-index: 13;
 } .minigame-container-10 {
   top: -63px;
   right: 256px;
-  z-index: 2;
+  z-index: 14;
 } .minigame-container-11 {
   top: -48px;
   right: 230px;
-  z-index: 3;
+  z-index: 15;
 } .minigame-container-12 {
   top: -33px;
   right: 203px;
-  z-index: 4;
+  z-index: 16;
 }
 
 @media (max-width: 1279px) {
@@ -326,87 +326,89 @@
     right: 266px;
   }
 } @media (max-width: 959px) {
-  .minigame {
-    /* background-size: 1400px; */
+  .minigame { 
     background-size: 1200px;
-    /* background-position-x: -140px; */
-    /* background-position-y: -47px;  */
     background-position-x: -30px;
     background-position-y: -70px;
-    /* background-position-x: -190px;
-    background-position-y: -200px; */
   } .minigame-ship {
     max-width: 440px;
-    /* top: 135px; */
-    /* right: 423px; */
     top: 34px;
     right: 352px;
+  } .crane-block {
+    top: -20px;
+    left: -20px;
   } .minigame-crane-header {
-    /* top: 90px; */
-    /* right: 345px; */
-    top: 28px;
-    right: 343px;
+    max-width: 360px;
+    top: 30px;
+    right: 350px;
   } .minigame-crane-footer {
     right: 394px;
     /* top: 160px; */
     top: 93px;
+  } .crane-leg {
+    top: 277px; 
+    right: 492px;
+  } .rope {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } .rope-container {
+    width: 55px;
+  } .minigame-train-block {
+    top: 35px;
+    right: -689px;
   } .minigame-containers-block {
-    /* top: 315px;
-    right: -163px; */
     top: 211px;
     right: -244px;
-  } 
+  } .ropeStart {
+    animation-name: ropeStart960;
+  } .ropeEnd {
+    animation-name: ropeEnd960;
+  } .ropeStart2 {
+    animation-name: ropeStart960-2;
+  } .ropeEnd2 {
+    animation-name: ropeEnd960-2;
+  }
+  
   
   .minigame-container {
-    max-width: 45px;
+    max-width: 55px;
   } .minigame-container-1 {
-    top: 8px;
-    right: 405px;
-    z-index: 3;
+    top: 3px;
+    right: -54px;
   } .minigame-container-2 {
-    top: 16px;
-    right: 392px;
-    z-index: 4;
+    top: 12px;
+    right: -70px;
   } .minigame-container-3 {
-    top: 24px;
-    right: 379px;
-    z-index: 5;
+    top: 22px;
+    right: -86px;
   } .minigame-container-4 {
-    top: -12px;
-    right: 413px;
-    z-index: 4;
+    top: 32px;
+    right: -102px;
   } .minigame-container-5 {
-    top: -4px;
-    right: 399px;
-    z-index: 5;
+    top: -22px;
+    right: -97px;
   } .minigame-container-6 {
-    top: 5px;
-    right: 385px;
-    z-index: 5;
+    top: -13px;
+    right: -113px;
   } .minigame-container-7 {
-    top: -68px;
-    right: 296px;
-    z-index: 6;
+    top: -3px;
+    right: -129px;
   } .minigame-container-8 {
-    top: -49px;
-    right: 290px;
-    z-index: 5;
+    top: 7px;
+    right: -147px;
   } .minigame-container-9 {
-    top: -57px;
-    right: 303px;
-    z-index: 4;
+    top: -46px;
+    right: -141px;
   } .minigame-container-10 {
-    top: -65px;
-    right: 316px;
-    z-index: 3;
+    top: -37px;
+    right: -157px;
   } .minigame-container-11 {
-    top: 0px;
-    right: 418px;
-    z-index: 2;
+    top: -27px;
+    right: -173px;
   } .minigame-container-12 {
-    top: -76px;
-    right: 310px;
-    z-index: 5;
+    top: -18px;
+    right: -191px;
   }
 } @media (max-width: 650px) and (orientation: portrait) {
   .minigame-lock {
@@ -423,16 +425,43 @@
     background-position-y: -100px;
   } .minigame-ship {
     max-width: 300px;
-    top: 92px;
-    right: 270px;
+    top: 62px;
+    right: 215px;
+  } .crane-block {
+    top: -79px;
+    left: 100px;
   } .minigame-crane-header {
-    max-width: 250px;
-    top: 113px;
-    right: 292px;
+    max-width: 275px;
+    top: 115px;
+    right: 296px;
   } .minigame-crane-footer {
-    max-width: 130px;
+    max-width: 145px;
     top: 165px;
     right: 334px;
+  } .crane-leg {
+    width: 87px;
+    top: 299px;
+    right: 407px;
+  } .rope {
+    top: 135px;
+    left: 90px;
+    height: 80px;
+  } .minigame-train-block {
+    top: 72px;
+    right: -425px;
+  } .minigame-train {
+    width: 150px;
+  } .minigame-railway-carriage {
+    width: 135px;
+  } .railway-carriage-1 {
+    top: -44px;
+    right: -327px;
+  } .railway-carriage-2 {
+    top: -105px;
+    right: -439px;
+  } .railway-carriage-3 {
+    top: -166px;
+    right: -551px;
   } .minigame-containers-block {
     top: 210px;
     right: -99px;
@@ -601,39 +630,113 @@
   } 
 } @keyframes ropeStart1279-2 {
   0% {
-    top: 100px;
-    left: 580px;
-    height: 200px;
+    top: 162px;
+    left: 407px;
+    height: 140px;
   } 25% {
-    top: 100px;
-    left: 580px;
-    height: 300px;
+    top: 162px;
+    left: 407px;
+    height: 170px;
   } 50% {
-    top: 100px;
-    left: 580px;
-    height: 200px;
+    top: 162px;
+    left: 407px;
+    height: 140px;
   } 75% {
-    top: 263px;
-    left: 870px;
-    height: 200px;
+    top: 222px;
+    left: 572px;
+    height: 140px;
   } 100% {
-    top: 263px;
-    left: 870px;
-    height: 287px;
+    top: 222px;
+    left: 572px;
+    height: 212px;
   }
 } @keyframes ropeEnd1279-2 {
   0% {
-    top: 263px;
-    left: 870px;
-    height: 287px;
+    top: 222px;
+    left: 502px;
+    height: 250px;
   } 50% {
-    top: 263px;
-    left: 870px;
-    height: 200px;
+    top: 222px;
+    left: 502px;
+    height: 140px;
   } 100% {
-    top: 100px;
-    left: 580px;
-    height: 200px;
+    top: 162px;
+    left: 407px;
+    height: 140px;
+  } 
+}
+
+@keyframes ropeStart960 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 128px;
+    left: 391px;
+    height: 120px;
+  } 100% {
+    top: 128px;
+    left: 391px;
+    height: 230px;
+  }
+} @keyframes ropeEnd960 {
+  0% {
+    top: 128px;
+    left: 391px;
+    height: 230px;
+  } 50% {
+    top: 128px;
+    left: 391px;
+    height: 120px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 
+} @keyframes ropeStart960-2 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 150px;
+    left: 442px;
+    height: 120px;
+  } 100% {
+    top: 150px;
+    left: 442px;
+    height: 175px;
+  }
+} @keyframes ropeEnd960-2 {
+  0% {
+    top: 150px;
+    left: 442px;
+    height: 175px;
+  } 50% {
+    top: 150px;
+    left: 442px;
+    height: 140px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 140px;
   } 
 }
 
