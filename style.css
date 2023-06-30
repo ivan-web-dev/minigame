@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,7 +15,6 @@
   background-image: url("./images/main-image.png");
   background-repeat: no-repeat;
   overflow: hidden;
-  /* pointer-events: none; */
 } .minigame-lock {
   display: none;
   position: absolute;
@@ -131,7 +130,7 @@
   animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: forwards;
-}  .ropeStart2 {
+} .ropeStart2 {
   animation-name: ropeStart2;
   animation-duration: 4s;
   animation-timing-function: linear;
@@ -148,20 +147,24 @@
 } .ropeStop {
   animation-play-state: paused;
 } .minigame-car {
-  position: absolute;
+  pointer-events: none;
 } .minigame-train-block {
   position: relative;
   width: fit-content;
   z-index: 1;
   top: 115px;
   right: -1442px;
-  animation-name: trainStart;
-  animation-duration: 1s;
+  /* animation-name: trainStart; */
+  animation-duration: 4s;
   animation-timing-function: ease-in-out;
   animation-delay: 250ms;
   animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: forwards;
+} .trainStart {
+  animation-name: trainStart !important;
+} .trainEnd {
+  animation-name: trainEnd;
 } .minigame-train { 
   position: absolute;
   top: 0;
@@ -182,7 +185,49 @@
   top: -224px;
   right: -677px;
   z-index: 1;
-} .minigame-containers-block {
+} 
+
+
+.minigame-car__container {
+  position: absolute;
+  z-index: 3;
+  cursor: pointer;
+} .minigame-car_1 {
+  top: 60px;
+  right: 0;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 250ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+} .minigame-car_2 {
+  top: 200px;
+  right: 280px;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 250ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+} .minigame-car_1-anim {
+  animation-name: carStart1;
+} .minigame-car_2-anim {
+  animation-name: carStart2;
+} .minigame-car_1-anim_end {
+  animation-name: carEnd1;
+} .minigame-car_2-anim_end {
+  animation-name: carEnd2;
+} .minigame-car_1__container {
+  top: -22px;
+  right: 12px;
+} .minigame-car_2__container {
+  top: -21px;
+  right: 13px;
+}
+
+
+.minigame-containers-block {
   position: relative;
   top: 421px;
   right: -982px;
@@ -500,7 +545,7 @@
   }
 }
 
-/* @keyframes trainStart {
+@keyframes trainStart {
   0% {
     top: 115px;
     right: -1442px;
@@ -510,13 +555,137 @@
   }
 } @keyframes trainEnd {
   0% {
-    top: -865px;
-    right: -238px;
+    top: 576px;
+    right: -600px;
   } 100% {
-    top: -1465px;
-    right: -838px;
+    top: 1248px;
+    right: 630px;
   } 
-} */
+}
+
+
+.carStartRope1 {
+  animation-name: carStartRope1;
+} .carEndRope1 {
+  animation-name: carEndRope1;
+}
+
+@keyframes carStart1 {
+  0% {
+    top: 60px;
+    right: 0;
+  } 100% {
+    top: 465px;
+    right: 760px;
+  }
+  /* 
+    top: 120px;
+    right: 23px; */
+} @keyframes carEnd1 {
+  0% {
+    top: 563px;
+    right: 950px;
+  } 100% {
+    top: 1052px;
+    right: 1802px;
+  } 
+} @keyframes carStart2 {
+  0% {
+    top: 200px;
+    right: 280px;
+  } 100% {
+    top: 576px;
+    right: 960px;
+  }
+  /* 
+    top: 10px;
+    right: -173px; */
+} @keyframes carEnd2 {
+  0% {
+    top: 576px;
+    right: 960px;
+  } 100% {
+    top: 1052px;
+    right: 1802px;
+  } 
+}
+
+@keyframes carStartRope1 {
+  0% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 25% {
+    top: 100px;
+    left: 580px;
+    height: 300px;
+  } 50% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 75% {
+    top: 220px;
+    left: 800px;
+    height: 200px;
+  } 100% {
+    top: 260px;
+    left: 864px;
+    height: 343px;
+  }
+} @keyframes carEndRope1 {
+  0% {
+    top: 260px;
+    left: 864px;
+    height: 343px;
+  } 50% {
+    top: 220px;
+    left: 800px;
+    height: 200px;
+  } 100% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 
+} @keyframes ropeStartRope2 {
+  0% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 25% {
+    top: 100px;
+    left: 580px;
+    height: 300px;
+  } 50% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 75% {
+    top: 263px;
+    left: 870px;
+    height: 200px;
+  } 100% {
+    top: 263px;
+    left: 870px;
+    height: 287px;
+  }
+} @keyframes carEndRope2 {
+  0% {
+    top: 263px;
+    left: 870px;
+    height: 287px;
+  } 50% {
+    top: 263px;
+    left: 870px;
+    height: 200px;
+  } 100% {
+    top: 100px;
+    left: 580px;
+    height: 200px;
+  } 
+}
+
+
+
 
 @keyframes ropeStart {
   0% {
