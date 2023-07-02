@@ -10,8 +10,9 @@
 <body>
   <section class="minigame">
     <div class="minigame-images">
-      <div class="minigame-ship_container">
+      <div class="minigame-ship_container ship-start" containers="8">
         <img src="./images/ship.png" alt="ship" class="minigame-ship">
+        <div class="minigame-containers-block"></div>
       </div>
       <div class="crane-block" crane-position="1">
         <img src="./images/crane-header.png" alt="crane-header" class="minigame-crane-header">
@@ -28,12 +29,13 @@
         <img src="./images/railway-carriage.png" alt="railway-carriage" class="minigame-railway-carriage railway-carriage-2" count="0" id="2">
         <img src="./images/railway-carriage.png" alt="railway-carriage" class="minigame-railway-carriage railway-carriage-3" count="0" id="3">
       </div>
-      <div class="minigame-containers-block"></div>
-      <div class="minigame-car__container minigame-car_1" id="4">
-        <img src="./images/car.png" alt="car" class="minigame-car">
-      </div>
-      <div class="minigame-car__container minigame-car_2" id="5">
-        <img src="./images/car.png" alt="car" class="minigame-car">
+      <div class="minigame-cars">
+        <div class="minigame-car__container minigame-car_1" id="4">
+          <img src="./images/car.png" alt="car" class="minigame-car">
+        </div>
+        <div class="minigame-car__container minigame-car_2" id="5">
+          <img src="./images/car.png" alt="car" class="minigame-car">
+        </div>
       </div>
     </div>
     <div class="minigame-lock">
@@ -41,6 +43,7 @@
     </div>
     <div class="minigame-bg"></div>
     <style id="minigame-style"></style>
+    <div class="minigame-timer"><span>60</span></div>
   </section>
   
   <script src="./script.js" defer></script>

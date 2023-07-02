@@ -249,3 +249,144 @@ function gameLogic(pxDifference, railwayAndTrainPosition, railwayAndTrainBlock, 
     }; FirstAnimateAndClicks();
   }, 1000);
 };
+
+
+
+/* else if (document.body.clientWidth < 960 && window.screen.orientation.type == "landscape-primary") {
+    let size = 960 - document.body.clientWidth; // разница начальной ширины экрана от текущей
+    calculateProperties(size);let styleBlock = document.querySelector("#minigame-style");
+    
+    let railwayAndTrainBlock = document.querySelector(".minigame-train-block"); // получаем блок с поездом и перевозками
+    let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
+    let dataObj = {
+      "cranePos1": {
+        "craneStartPosX": -20,
+        "craneStartPosY": -20,
+      }, "cranePos2": {
+        "craneStartPosX": 120,
+        "craneStartPosY": -96,
+      }, "cranePos3": {
+        "craneStartPosX": 267,
+        "craneStartPosY": -177,
+      }, "containerAnim" : {
+        "cranePos1": {
+          "0%": {
+            "top": -23,
+            "right": -54,
+          }, "33%": {
+            "top": -83,
+            "right": -54,
+          },
+          "containerPos1": -15,
+          "containerPos2": 6
+        }, "cranePos2": {
+          "0%": {
+            "top": -23,
+            "right": -54,
+          }, "25%": {
+            "top": -83,
+            "right": -54,
+          }, "50%": {
+            "top": -155,
+            "right": -194,
+          },
+          "containerPos1": -91,
+          "containerPos2": -71
+        }, "cranePos3": {
+          "0%": {
+            "top": -23,
+            "right": -54,
+          }, "25%": {
+            "top": -83,
+            "right": -54,
+          }, "50%": {
+            "top": -239,
+            "right": -339,
+          },
+          "containerPos1": -173, //-469px
+          "containerPos2": -150
+        }, 
+      }
+    };
+    
+    let railwayAndTrainPosition = {
+      "0%": {
+        "top": Number(getComputedStyle(railwayAndTrainBlock).top),
+        "right": Number(getComputedStyle(railwayAndTrainBlock).right),
+      }, "100%": {
+        "top": 576,
+        "right": 600
+      }
+    }; // создаем объект с анимацией
+
+    // Прописываю анимацию в тег <style>
+    styleBlock.innerHTML += `
+      @keyframes trainStart {
+        0% {
+          top: ${Number(getComputedStyle(railwayAndTrainBlock).top)}px;
+          right: ${Number(getComputedStyle(railwayAndTrainBlock).right)}px;
+        } 100% {
+          top: 331px;
+          right: -150px;
+        }
+      }
+    `; // добавляем анимацию
+
+    railwaysCarriages.forEach(carriage => {
+      if (carriage.classList.contains("railway-carriage-1")) {
+        carriage.setAttribute("position-X", "-182");
+        carriage.setAttribute("position-Y", "95");
+        carriage.setAttribute("position-X2", "-233");
+        carriage.setAttribute("position-Y2", "67");
+      } else if (carriage.classList.contains("railway-carriage-2")) {
+        carriage.setAttribute("position-X", "-322");
+        carriage.setAttribute("position-Y", "20");
+        carriage.setAttribute("position-X2", "-374");
+        carriage.setAttribute("position-Y2", "-10");
+      } else if (carriage.classList.contains("railway-carriage-3")) {
+        carriage.setAttribute("position-X", "-468");
+        carriage.setAttribute("position-Y", "-61");
+        carriage.setAttribute("position-X2", "-520");
+        carriage.setAttribute("position-Y2", "-91");
+      }
+    });
+    
+    gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, dataObj);
+    console.log(960 + " + landscape-primary");
+  } */
+  
+  
+  
+/* @keyframes carStart1 {
+  0% {
+    top: 60px;
+    right: 1503px;
+  } 100% {
+    top: 465px;
+    right: 760px;
+  }
+} @keyframes carEnd1 {
+  0% {
+    top: 465px;
+    right: 760px;
+  } 100% {
+    top: 1052px;
+    right: 1802px;
+  } 
+} @keyframes carStart2 {
+  0% {
+    top: 200px;
+    right: 1769px;
+  } 100% {
+    top: 576px;
+    right: 960px;
+  }
+} @keyframes carEnd2 {
+  0% {
+    top: 576px;
+    right: 960px;
+  } 100% {
+    top: 1052px;
+    right: 1802px;
+  } 
+} */
