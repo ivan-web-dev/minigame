@@ -9,7 +9,7 @@
   position: relative;
   max-width: 1920px;
   width: 100%;
-  height: 120vh;
+  height: 100vh;
   min-height: 400px;
   background: #000;
   background-image: url("./images/main-image.png");
@@ -127,12 +127,27 @@
   right: 20px;
   width: 50px;
   height: 50px;
-  background: #000;
+  background: #fcdd60;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 } .minigame-timer span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+} .minigame-record {
+  position: absolute;
+  bottom: 20px;
+  right: 80px;
+  width: 50px;
+  height: 50px;
+  background: #fcdd60;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} .minigame-record span {
   font-size: 16px;
   font-weight: 500;
   color: #fff;
@@ -181,7 +196,6 @@
   animation-fill-mode: forwards;
 } 
 
-
 .carStartRope1 {
   animation-name: carStartRope1;
   animation-duration: 4s;
@@ -211,7 +225,6 @@
   animation-direction: normal;
   animation-fill-mode: forwards;
 } 
-
 
 .ropeStop {
   animation-play-state: paused;
@@ -255,10 +268,6 @@
   right: -677px;
   z-index: 1;
 } 
-
-
-
-
 
 .minigame-cars {
   position: relative;
@@ -313,6 +322,15 @@
   cursor: pointer;
 } .minigame-container_bg {
   box-shadow: 0px 0px 10px #fff;
+} .minigame-container_bg::before {
+  content: "↓";
+  position: absolute;
+  top: -15px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  color: #fcdd60;
 } .minigame-container-1 {
   top: 0px;
   right: 417px;
@@ -389,8 +407,6 @@
   right: -660px;
 }
 
-
-
 @media (max-width: 1279px) {
   .minigame {
     background-position-x: -190px;
@@ -413,8 +429,8 @@
     top: 376px;
     right: 681px;
   } .rope {
-    top: 162px;
-    left: 407px;
+    top: 160px;
+    left: 392px;
     height: 140px;
   } .rope-container {
     width: 60px;
@@ -432,30 +448,56 @@
     animation-name: ropeStart1279-2;
   } .ropeEnd2 {
     animation-name: ropeEnd1279-2;
+  } .crane-block .ropeStart1279-cb2 {
+    animation-name: ropeStart1279-cb2;
+  } .crane-block .ropeEnd1279-cb2 {
+    animation-name: ropeEnd1279-cb2;
+  } .crane-block .ropeStart1279-2-cb2 {
+    animation-name: ropeStart1279-2-cb2;
+  } .crane-block .ropeEnd1279-2-cb2 {
+    animation-name: ropeEnd1279-2-cb2;
+  } .crane-block .ropeStart1279-cb3 {
+    animation-name: ropeStart1279-cb3;
+  } .crane-block .ropeEnd1279-cb3 {
+    animation-name: ropeEnd1279-cb3;
+  } .crane-block .ropeStart1279-2-cb3 {
+    animation-name: ropeStart1279-2-cb3;
+  } .crane-block .ropeEnd1279-2-cb3 {
+    animation-name: ropeEnd1279-2-cb3;
   }
   
   .minigame-car {
     width: 110px;
   } .minigame-car_1 {
-    top: 60px;
-    right: 917px;
+    top: 130px;
+    right: 1050px;
   } .minigame-cars_start {
     animation-name: minigameCarsStart1279;
   } .minigame-cars_end {
     animation-name: minigameCarsEnd1279;
   }
   
+  .trainEnd {
+    animation-name: trainEnd1279;
+  } 
   
   .carStartRope1 {
-    animation-name: carStartRope1;
+    animation-name: carStartRope_1279;
   } .carEndRope1 {
-    animation-name: carEndRope1;
+    animation-name: carEndRope_1279;
   } .carStartRope2 {
-    animation-name: carStartRope2;
+    animation-name: carStartRope2_1279;
   } .carEndRope2 {
-    animation-name: carEndRope2;
+    animation-name: carEndRope2_1279;
   }
   
+  .minigame-car_1__container {
+    top: -14px;
+    right: 12px;
+  } .minigame-car_2__container {
+    top: -14px;
+    right: 13px;
+  }
   
   .minigame-container {
     max-width: 60px;
@@ -565,6 +607,34 @@
     animation-name: ropeStart960-2;
   } .ropeEnd2 {
     animation-name: ropeEnd960-2;
+  } .crane-block .ropeStart1279-cb2 {
+    animation-name: ropeStart960-cb2;
+  } .crane-block .ropeEnd1279-cb2 {
+    animation-name: ropeEnd960-cb2;
+  } .crane-block .ropeStart1279-2-cb2 {
+    animation-name: ropeStart960-2-cb2;
+  } .crane-block .ropeEnd1279-2-cb2 {
+    animation-name: ropeEnd960-2-cb2;
+  } .crane-block .ropeStart1279-cb3 {
+    animation-name: ropeStart960-cb3;
+  } .crane-block .ropeEnd1279-cb3 {
+    animation-name: ropeEnd960-cb3;
+  } .crane-block .ropeStart1279-2-cb3 {
+    animation-name: ropeStart960-2-cb3;
+  } .crane-block .ropeEnd1279-2-cb3 {
+    animation-name: ropeEnd960-2-cb3;
+  } .carStartRope1 {
+    animation-name: carStartRope_960;
+  } .carEndRope1 {
+    animation-name: carEndRope_960;
+  } .carStartRope2 {
+    animation-name: carStartRope2_960;
+  } .carEndRope2 {
+    animation-name: carEndRope2_960;
+  } 
+  
+  .trainEnd {
+    animation-name: trainEnd959;
   } 
   
   .minigame-car_1 {
@@ -747,6 +817,22 @@
     top: 1248px;
     right: 630px;
   } 
+} @keyframes trainEnd1279 {
+  0% {
+    top: 465px;
+    right: -246px;
+  } 100% {
+    top: 975px;
+    right: 678px;
+  } 
+} @keyframes trainEnd959 {
+  0% {
+    top: 331px;
+    right: -150px;
+  } 100% {
+    top: 780px;
+    right: 668px;
+  } 
 }
 
 @keyframes shipStart {
@@ -765,11 +851,7 @@
     top: 620px;
     left: -1100px;
   } 
-} 
-
-
-
-/* TEST */
+}
 
 @keyframes minigameCarsStart {
   0% {
@@ -789,23 +871,19 @@
   }
 } @keyframes minigameCarsStart1279 {
   0% {
-    /* top: 0;
-    right: -1565px; */
     top: -110px;
     right: -1165px;
   } 100% {
-    /* top: 415px;
-    right: -804px; */
     top: 272px;
     right: -464px;
   }
 } @keyframes minigameCarsEnd1279 {
   0% {
-    top: 373px;
-    right: -804px;
+    top: 272px;
+    right: -464px;
   } 100% {
-    top: 968px;
-    right: 237px;
+    top: 637px;
+    right: 161px;
   }
 } @keyframes minigameCarsStart959 {
   0% {
@@ -817,14 +895,13 @@
   }
 } @keyframes minigameCarsEnd959 {
   0% {
-    top: -177px;
-    right: -945px;
-  } 100% {
     top: 140px;
     right: -365px;
+  } 100% {
+    top: 479px;
+    right: 227px;
   }
 }
-
 
 @keyframes carStartRope1 {
   0% {
@@ -898,10 +975,151 @@
     left: 580px;
     height: 200px;
   } 
+} @keyframes carStartRope_1279 {
+  0% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 25% {
+    top: 160px;
+    left: 392px;
+    height: 180px;
+  } 50% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 75% {
+    top: 242px;
+    left: 545px;
+    height: 140px;
+  } 100% {
+    top: 242px;
+    left: 545px;
+    height: 240px;
+  }
+} @keyframes carEndRope_1279 {
+  0% {
+    top: 242px;
+    left: 545px;
+    height: 240px;
+  } 50% {
+    top: 242px;
+    left: 545px;
+    height: 140px;
+  } 100% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 
+} @keyframes carStartRope2_1279 {
+  0% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 25% {
+    top: 160px;
+    left: 392px;
+    height: 180px;
+  } 50% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 75% {
+    top: 242px;
+    left: 545px;
+    height: 140px;
+  } 100% {
+    top: 242px;
+    left: 545px;
+    height: 240px;
+  }
+} @keyframes carEndRope2_1279 {
+  0% {
+    top: 242px;
+    left: 545px;
+    height: 240px;
+  } 50% {
+    top: 242px;
+    left: 545px;
+    height: 140px;
+  } 100% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 
+} @keyframes carStartRope_960 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 145px;
+    left: 428px;
+    height: 120px;
+  } 100% {
+    top: 145px;
+    left: 428px;
+    height: 233px;
+  }
+} @keyframes carEndRope_960 {
+  0% {
+    top: 145px;
+    left: 428px;
+    height: 233px;
+  } 50% {
+    top: 145px;
+    left: 428px;
+    height: 120px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 
+} @keyframes carStartRope2_960 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 145px;
+    left: 444px;
+    height: 120px;
+  } 100% {
+    top: 145px;
+    left: 444px;
+    height: 223px;
+  }
+} @keyframes carEndRope2_960 {
+  0% {
+    top: 145px;
+    left: 444px;
+    height: 223px;
+  } 50% {
+    top: 145px;
+    left: 444px;
+    height: 120px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 
 }
-
-
-
 
 @keyframes ropeStart {
   0% {
@@ -975,20 +1193,18 @@
     left: 580px;
     height: 200px;
   } 
-}
-
-@keyframes ropeStart1279 {
+} @keyframes ropeStart1279 {
   0% {
-    top: 162px;
-    left: 407px;
+    top: 160px;
+    left: 392px;
     height: 140px;
   } 25% {
-    top: 162px;
-    left: 407px;
-    height: 170px;
+    top: 160px;
+    left: 392px;
+    height: 180px;
   } 50% {
-    top: 162px;
-    left: 407px;
+    top: 160px;
+    left: 392px;
     height: 140px;
   } 75% {
     top: 222px;
@@ -1009,22 +1225,22 @@
     left: 502px;
     height: 140px;
   } 100% {
-    top: 162px;
-    left: 407px;
+    top: 160px;
+    left: 392px;
     height: 140px;
   } 
 } @keyframes ropeStart1279-2 {
   0% {
-    top: 162px;
-    left: 407px;
+    top: 160px;
+    left: 392px;
     height: 140px;
   } 25% {
-    top: 162px;
-    left: 407px;
-    height: 170px;
+    top: 160px;
+    left: 392px;
+    height: 180px;
   } 50% {
-    top: 162px;
-    left: 407px;
+    top: 160px;
+    left: 392px;
     height: 140px;
   } 75% {
     top: 222px;
@@ -1038,15 +1254,162 @@
 } @keyframes ropeEnd1279-2 {
   0% {
     top: 222px;
-    left: 502px;
-    height: 250px;
+    left: 572px;
+    height: 212px;
   } 50% {
     top: 222px;
-    left: 502px;
+    left: 572px;
     height: 140px;
   } 100% {
-    top: 162px;
-    left: 407px;
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 
+} @keyframes ropeStart1279-cb2 {
+  0% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 25% {
+    top: 160px;
+    left: 392px;
+    height: 180px;
+  } 50% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 75% {
+    top: 222px;
+    left: 537px;
+    height: 140px;
+  } 100% {
+    top: 222px;
+    left: 537px;
+    height: 230px;
+  }
+} @keyframes ropeEnd1279-cb2 {
+  0% {
+    top: 222px;
+    left: 537px;
+    height: 230px;
+  } 50% {
+    top: 222px;
+    left: 537px;
+    height: 140px;
+  } 100% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 
+} @keyframes ropeStart1279-2-cb2 {
+  0% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 25% {
+    top: 160px;
+    left: 392px;
+    height: 180px;
+  } 50% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 75% {
+    top: 222px;
+    left: 613px;
+    /* height: 189px; */
+    /* top: 271px; */
+    /* left: 613px; */
+    height: 140px;
+  } 100% {
+    top: 222px;
+    left: 613px;
+    height: 189px;
+  }
+} @keyframes ropeEnd1279-2-cb2 {
+  0% {
+    top: 222px;
+    left: 613px;
+    height: 189px;
+  } 50% {
+    top: 222px;
+    left: 613px;
+    height: 140px;
+  } 100% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 
+} @keyframes ropeStart1279-cb3 {
+  0% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 25% {
+    top: 160px;
+    left: 392px;
+    height: 180px;
+  } 50% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 75% {
+    top: 220px;
+    left: 526px;
+    height: 140px;
+  } 100% {
+    top: 220px;
+    left: 526px;
+    height: 234px;
+  }
+} @keyframes ropeEnd1279-cb3 {
+  0% {
+    top: 220px;
+    left: 526px;
+    height: 234px;
+  } 50% {
+    top: 220px;
+    left: 526px;
+    height: 140px;
+  } 100% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 
+} @keyframes ropeStart1279-2-cb3 {
+  0% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 25% {
+    top: 160px;
+    left: 392px;
+    height: 180px;
+  } 50% {
+    top: 160px;
+    left: 392px;
+    height: 140px;
+  } 75% {
+    top: 263px;
+    left: 592px;
+    height: 140px;
+  } 100% {
+    top: 263px;
+    left: 592px;
+    height: 158px;
+  }
+} @keyframes ropeEnd1279-2-cb3 {
+  0% {
+    top: 263px;
+    left: 592px;
+    height: 158px;
+  } 50% {
+    top: 263px;
+    left: 592px;
+    height: 140px;
+  } 100% {
+    top: 160px;
+    left: 392px;
     height: 140px;
   } 
 }
@@ -1123,5 +1486,148 @@
     left: 262px;
     height: 140px;
   } 
+} @keyframes ropeStart960-cb2 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 128px;
+    left: 391px;
+    height: 120px;
+  } 100% {
+    top: 128px;
+    left: 391px;
+    height: 230px;
+  }
+} @keyframes ropeEnd960-cb2 {
+  0% {
+    top: 128px;
+    left: 391px;
+    height: 230px;
+  } 50% {
+    top: 128px;
+    left: 391px;
+    height: 120px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 
+} @keyframes ropeStart960-2-cb2 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 150px;
+    left: 442px;
+    height: 120px;
+  } 100% {
+    top: 150px;
+    left: 442px;
+    height: 175px;
+  }
+} @keyframes ropeEnd960-2-cb2 {
+  0% {
+    top: 150px;
+    left: 442px;
+    height: 175px;
+  } 50% {
+    top: 150px;
+    left: 442px;
+    height: 140px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 140px;
+  } 
+} @keyframes ropeStart960-cb3 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 128px;
+    left: 391px;
+    height: 120px;
+  } 100% {
+    top: 128px;
+    left: 391px;
+    height: 230px;
+  }
+} @keyframes ropeEnd960-cb3 {
+  0% {
+    top: 128px;
+    left: 391px;
+    height: 230px;
+  } 50% {
+    top: 128px;
+    left: 391px;
+    height: 120px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 
+} @keyframes ropeStart960-2-cb3 {
+  0% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 25% {
+    top: 60px;
+    left: 262px;
+    height: 180px;
+  } 50% {
+    top: 60px;
+    left: 262px;
+    height: 120px;
+  } 75% {
+    top: 150px;
+    left: 442px;
+    height: 120px;
+  } 100% {
+    top: 150px;
+    left: 442px;
+    height: 175px;
+  }
+} @keyframes ropeEnd960-2-cb3 {
+  0% {
+    top: 150px;
+    left: 442px;
+    height: 175px;
+  } 50% {
+    top: 150px;
+    left: 442px;
+    height: 140px;
+  } 100% {
+    top: 60px;
+    left: 262px;
+    height: 140px;
+  } 
 }
-

@@ -115,7 +115,7 @@ function mainFunc() {
           
           ship.classList.add("ship-end");
           ship.classList.remove("ship-start");
-        }, 3000);
+        }, 6000);
       }
       
       if (carriageID == 1) { // если ID перевозки равен 1
@@ -172,22 +172,23 @@ function mainFunc() {
       }
 
       containerID = activeElements[0].getAttribute("id"); // получаем ID выбранного контейнера
-      
-      /* if (craneBlockPosition == 1) { // если позиция крана равна 1
-        containerPos1 = containerPos1; // оставляем позицию контейнера по Y
-        containerPos2 = containerPos2; // оставляем позицию контейнера по Y
-      } else if (craneBlockPosition == 2) { // если позиция крана равна 2
-        containerPos1 = containerPos1 - 79; // изменяем позицию контейнера по Y
-        containerPos2 = containerPos2 - 79; // изменяем позицию контейнера по Y
-      } else { // если позиция крана равна 3
-        containerPos1 = containerPos1 - 144; // изменяем позицию контейнера по Y
-        containerPos2 = containerPos2 - 144; // изменяем позицию контейнера по Y
-      } */
 
       if (ropeAnim == 1) {  // номер анимации для веревки равен 1
         rope.classList.add("ropeStart"); // добавляем движение веревке
         rope.classList.remove("carEndRope1");
         rope.classList.remove("carEndRope2");
+        rope.classList.remove("ropeEnd1279-cb2");
+        rope.classList.remove("ropeEnd1279-2-cb2");
+        rope.classList.remove("ropeEnd1279-cb3");
+        rope.classList.remove("ropeEnd1279-2-cb3");
+        
+        
+        if (craneBlockPosition == 2) { 
+          rope.classList.add("ropeStart1279-cb2"); // добавляем движение веревке
+        } else if (craneBlockPosition == 3) {
+          rope.classList.add("ropeStart1279-cb3"); // добавляем движение веревке
+        }
+        
         
         if (craneBlockPosition == 2 || craneBlockPosition == 3) { 
           setTimeout(() => {
@@ -204,6 +205,16 @@ function mainFunc() {
         rope.classList.add("ropeStart2");
         rope.classList.remove("carEndRope1");
         rope.classList.remove("carEndRope2");
+        rope.classList.remove("ropeEnd1279-cb2");
+        rope.classList.remove("ropeEnd1279-2-cb2");
+        rope.classList.remove("ropeEnd1279-cb3");
+        rope.classList.remove("ropeEnd1279-2-cb3");
+        
+        if (craneBlockPosition == 2) { 
+          rope.classList.add("ropeStart1279-2-cb2"); // добавляем движение веревке
+        } else if (craneBlockPosition == 3) {
+          rope.classList.add("ropeStart1279-2-cb3"); // добавляем движение веревке
+        }
         
         if (craneBlockPosition == 2 || craneBlockPosition == 3) {
           setTimeout(() => {
@@ -351,7 +362,6 @@ function mainFunc() {
         activeElements = []; // Очищаем массив с выбранными элементами
       }, 6000);
       
-      
       if (railwayAndTrainBlock.getAttribute("count") == 6) { // анимация конца проезда поезда
         setTimeout(() => {
           railwayAndTrainBlock.classList.add("trainEnd");
@@ -359,16 +369,36 @@ function mainFunc() {
         }, 8000);
       }
       
-      //console.log(usedElements);
-      
       if (ropeAnim == 1) {
         setTimeout(() => {
+          if (craneBlockPosition == 2) { 
+            rope.classList.add("ropeEnd1279-cb2"); // добавляем движение веревке
+          } else if (craneBlockPosition == 3) {
+            rope.classList.add("ropeEnd1279-cb3"); // добавляем движение веревке
+          }
+          
+          rope.classList.remove("ropeStart1279-cb2");
+          rope.classList.remove("ropeStart1279-2-cb2");
+          rope.classList.remove("ropeStart1279-cb3");
+          rope.classList.remove("ropeStart1279-2-cb3");
+          
           rope.classList.add("ropeEnd");
           rope.classList.remove("ropeStart");
           rope.classList.remove("ropeStart2");
         }, craneBlockPosition == 1 ? 4000 : 5000);
       } else {
         setTimeout(() => {
+          if (craneBlockPosition == 2) { 
+            rope.classList.add("ropeEnd1279-2-cb2"); // добавляем движение веревке
+          } else if (craneBlockPosition == 3) {
+            rope.classList.add("ropeEnd1279-2-cb3"); // добавляем движение веревке
+          }
+          
+          rope.classList.remove("ropeStart1279-cb2");
+          rope.classList.remove("ropeStart1279-2-cb2");
+          rope.classList.remove("ropeStart1279-cb3");
+          rope.classList.remove("ropeStart1279-2-cb3");
+          
           rope.classList.add("ropeEnd2");
           rope.classList.remove("ropeStart2");
           rope.classList.remove("ropeStart");
@@ -383,7 +413,11 @@ function mainFunc() {
         }, freezeGame);
       });
       
-      console.log(freezeGame);
+      let gameRecord = document.querySelector(".minigame-record span");
+      
+      gameCount = gameCount + 1;
+      
+      gameRecord.innerText = gameCount;
     } else {
       //alert("Выберите сначала контейнер, а потом вагонетку!");
       activeElements = []; // Очищаем массив с выбранными элементами
@@ -402,6 +436,12 @@ function mainFunc() {
       let minigameCars = document.querySelector(".minigame-cars");
       let minigameCarsCount;
       minigameCarsCount = minigameCars.getAttribute("count");
+        
+      let gameRecord = document.querySelector(".minigame-record span");
+      
+      gameCount = gameCount + 1;
+      
+      gameRecord.innerText = gameCount;
       
       if (activeElements[1].getAttribute("count")) {
         // alert("Машина уже заполнена!");
@@ -419,7 +459,7 @@ function mainFunc() {
         setTimeout(() => {
           ship.classList.add("ship-end");
           ship.classList.remove("ship-start");
-        }, 3000);
+        }, 6000);
       }
       
       if (minigameCarsCount) {
@@ -466,6 +506,11 @@ function mainFunc() {
       containerID = activeElements[0].getAttribute("id"); // получаем ID выбранного контейнера
 
       if (ropeAnim == 1) {  // номер анимации для веревки равен 1
+        
+        console.log(ropeAnim);
+        
+        rope.classList.remove("ropeEnd"); // добавляем движение веревке
+        rope.classList.remove("ropeEnd2"); // добавляем движение веревке
         rope.classList.add("carStartRope1"); // добавляем движение веревке
         
         if (craneBlockPosition == 2 || craneBlockPosition == 3) { 
@@ -480,6 +525,8 @@ function mainFunc() {
         rope.classList.remove("carEndRope1");
         rope.classList.remove("carEndRope2");
       } else {
+        console.log(ropeAnim);
+        
         rope.classList.add("carStartRope2");
         
         if (craneBlockPosition == 2 || craneBlockPosition == 3) {
@@ -549,7 +596,7 @@ function mainFunc() {
           }
         `; // создаем анимацию
         
-        freezeGame = 6000;
+        freezeGame = 7000;
       } else { 
         styleBlock.innerHTML += `
           @keyframes moveContainer${containerID} {
@@ -578,7 +625,7 @@ function mainFunc() {
           }
         `; // создаем анимацию
         
-        freezeGame = 6000;
+        freezeGame = 7000;
       }
 
       activeElements[0].classList.add(`animation-${containerID}`); // Добавляем анимацию контейнеру
@@ -596,14 +643,6 @@ function mainFunc() {
         }
         
         activeCar.insertAdjacentElement("beforeend", activeContainer);
-        
-        /* if (activeCar.classList.contains("minigame-car_1")) {
-          activeCar.classList.add(`minigame-car_1-anim_end`);
-          activeCar.classList.remove(`minigame-car_1-anim`);
-        } else {
-          activeCar.classList.add(`minigame-car_2-anim_end`);
-          activeCar.classList.remove(`minigame-car_2-anim`);
-        } */
       }
       
       if (minigameCarsCount == 2) {
@@ -630,12 +669,28 @@ function mainFunc() {
           rope.classList.add("carEndRope1");
           rope.classList.remove("carStartRope1");
           rope.classList.remove("carStartRope2");
+          rope.classList.remove("ropeEnd");
+          rope.classList.remove("ropeEnd2");
+          rope.classList.remove("carEndRope2");
+          rope.classList.remove("ropeEnd1279-cb2");
+          rope.classList.remove("ropeEnd1279-2-cb2");
+          rope.classList.remove("ropeEnd1279-cb3");
+          rope.classList.remove("ropeEnd1279-2-cb3");
         }, craneBlockPosition == 1 ? 4000 : 5000);
       } else {
         setTimeout(() => {
           rope.classList.add("carEndRope2");
           rope.classList.remove("carStartRope2");
           rope.classList.remove("carStartRope1");
+          rope.classList.remove("carStartRope1");
+          rope.classList.remove("carStartRope2");
+          rope.classList.remove("ropeEnd");
+          rope.classList.remove("ropeEnd2");
+          rope.classList.remove("carEndRope1");
+          rope.classList.remove("ropeEnd1279-cb2");
+          rope.classList.remove("ropeEnd1279-2-cb2");
+          rope.classList.remove("ropeEnd1279-cb3");
+          rope.classList.remove("ropeEnd1279-2-cb3");
         }, craneBlockPosition == 1 ? 4000 : 5000);
       }
       
@@ -680,21 +735,34 @@ function mainFunc() {
   }
   
   function gameTimer(level) {
-    //let timer = document.querySelector(".minigame-timer");
+    let gameRecord = document.querySelector(".minigame-record span");
     let timerSpan = document.querySelector(".minigame-timer span");
     let timerRecord;
     
     if (level == 1) {
-      timerRecord = 60;
+      timerRecord = 120;
+      timerSpan.innerText = `${timerRecord}`;
+      gameRecord.innerText = gameCount;
     } else if (level == 2) {
-      timerRecord = 50;
+      timerRecord = 100;
+      timerSpan.innerText = `${timerRecord}`;
+      gameRecord.innerText = gameCount;
     } else {
-      timerRecord = 40;
+      timerRecord = 90;
+      timerSpan.innerText = `${timerRecord}`;
+      gameRecord.innerText = gameCount;
     }
     
     setTimeout(() => {
       let intervalIdentify = setInterval(() => {
-        if (timerRecord) {
+        if (gameCount == 8 || gameCount == 16) {
+          setTimeout(() => {
+            level = level + 1;
+            clearInterval(intervalIdentify);
+            clearGame();
+            mainFunc(level);
+          }, 10000);
+        } else if (timerRecord) {
           timerRecord = timerRecord - 1;
           
           timerSpan.innerText = `${timerRecord}`;
@@ -702,7 +770,7 @@ function mainFunc() {
           clearInterval(intervalIdentify);
           alert("Game over");
           clearGame();
-          mainFunc();
+          mainFunc(level);
           return;
         }
       }, 1000);
@@ -1057,8 +1125,6 @@ function mainFunc() {
     
     calculateProperties(size);
     
-    
-    
     let styleBlock = document.querySelector("#minigame-style");
     let railwayAndTrainBlock = document.querySelector(".minigame-train-block"); // получаем блок с поездом и перевозками
     let cars = document.querySelector(".minigame-cars");
@@ -1066,6 +1132,9 @@ function mainFunc() {
     let car2 = document.querySelector(".minigame-car_2"); // получаем блок с поездом и перевозками
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
     let freezeGame = 8000;
+    
+    railwayAndTrainBlock.classList.add("trainStart");
+    cars.classList.add("minigame-cars_start");
     
     let dataObj = {
       "cranePos1": {
@@ -1080,41 +1149,47 @@ function mainFunc() {
       }, "containerAnim" : {
         "cranePos1": {
           "0%": {
-            "top": -10,
-            "right": 294,
+            "top": 0,
+            "right": 312,
           }, "33%": {
-            "top": -41,
-            "right": 294,
-          },
-          "containerPos1": 20,
+            "top": -40,
+            "right": 312,
+          }, 
+          "containerPos1": 21,
           "containerPos2": 20
         }, "cranePos2": {
           "0%": {
-            "top": -10,
-            "right": 294,
+            "top": -2,
+            "right": 310,
           }, "25%": {
-            "top": -41,
-            "right": 294,
+            "top": -42,
+            "right": 310,
           }, "50%": {
-            "top": -105,
-            "right": 174,
+            "top": -106,
+            "right": 190,
           },
-          "containerPos1": -47,
-          "containerPos2": -4
+          "containerPos1": -46,
+          "containerPos2": -33
         }, "cranePos3": {
           "0%": {
-            "top": -10,
-            "right": 294,
+            "top": -2,
+            "right": 310,
           }, "25%": {
-            "top": -41,
-            "right": 294,
+            "top": -42,
+            "right": 310,
           }, "50%": {
-            "top": -193,
-            "right": 30,
+            "top": -196,
+            "right": 25,
           },
-          "containerPos1": -47,
-          "containerPos2": -140
-        }, 
+          "containerPos1": -135,
+          "containerPos2": -93
+        },
+      }, "carPos1": {
+        "carPosX75%": -210,
+        "carPosY75%": -25
+      }, "carPos2": {
+        "carPosX75%": 158,
+        "carPosY75%": 40
       }
     };
     
@@ -1160,10 +1235,10 @@ function mainFunc() {
       }
     });
     
-    car1.setAttribute("position-X", "-210");
-    car1.setAttribute("position-Y", "-10");
-    car2.setAttribute("position-X", "52");
-    car2.setAttribute("position-Y", "131");
+    car1.setAttribute("position-X", "34");
+    car1.setAttribute("position-Y", "73");
+    car2.setAttribute("position-X", "156");
+    car2.setAttribute("position-Y", "144");
     
     gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, dataObj, freezeGame);
     
@@ -1176,10 +1251,20 @@ function mainFunc() {
     console.log(960);
   } else if (document.body.clientWidth < 960 && document.body.clientWidth >= 705 && document.body.clientHeight > 500) {
     let size = 960 - document.body.clientWidth; // разница начальной ширины экрана от текущей
-    calculateProperties(size);let styleBlock = document.querySelector("#minigame-style");
     
+    calculateProperties(size);
+    
+    let styleBlock = document.querySelector("#minigame-style");
     let railwayAndTrainBlock = document.querySelector(".minigame-train-block"); // получаем блок с поездом и перевозками
+    let cars = document.querySelector(".minigame-cars");
+    let car1 = document.querySelector(".minigame-car_1"); // получаем блок с поездом и перевозками
+    let car2 = document.querySelector(".minigame-car_2"); // получаем блок с поездом и перевозками
     let railwaysCarriages = document.querySelectorAll(".minigame-railway-carriage"); // получаем все перевозки
+    let freezeGame = 8000;
+    
+    railwayAndTrainBlock.classList.add("trainStart");
+    cars.classList.add("minigame-cars_start");
+    
     let dataObj = {
       "cranePos1": {
         "craneStartPosX": -20,
@@ -1228,6 +1313,12 @@ function mainFunc() {
           "containerPos1": -173, //-469px
           "containerPos2": -150
         }, 
+      }, "carPos1": {
+        // "carPosX75%": -210,
+        "carPosY75%": -74
+      }, "carPos2": {
+        // "carPosX75%": 158,
+        "carPosY75%": 2
       }
     };
     
@@ -1273,9 +1364,21 @@ function mainFunc() {
       }
     });
     
-    gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, dataObj);
+    car1.setAttribute("position-X", "-374");
+    car1.setAttribute("position-Y", "30");
+    car2.setAttribute("position-X", "-218");
+    car2.setAttribute("position-Y", "116");
+    
+    gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, dataObj, freezeGame);
+    
+    gameTimer(level);
+    
+    if (level <= 3) {
+      level + 1;
+    }
+    
     console.log(705);
-  } else if (document.body.clientWidth < 651 && window.screen.orientation.type == "landscape-primary") {
+  }/*  else if (document.body.clientWidth < 651 && window.screen.orientation.type == "landscape-primary") {
     let size = 650 - document.body.clientWidth; // разница начальной ширины экрана от текущей
     calculateProperties(size);
     let styleBlock = document.querySelector("#minigame-style");
@@ -1377,5 +1480,5 @@ function mainFunc() {
     
     gameLogic(railwayAndTrainPosition, railwayAndTrainBlock, styleBlock, dataObj);
     console.log(651);
-  } 
-} mainFunc();
+  }  */
+} mainFunc(level);
