@@ -9,7 +9,7 @@
   position: relative;
   max-width: 1920px;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
   min-height: 400px;
   background: #000;
   background-image: url("./images/main-image.png");
@@ -107,13 +107,25 @@
   position: absolute;
   top: 62px;
   right: 757px;
-  z-index: 221;
+  z-index: 204;
   pointer-events: none;
 } .minigame-crane-footer {
   position: absolute;
   top: 194px;
   right: 852px;
   z-index: 220;
+  pointer-events: none;
+} .crane-front {
+  position: absolute;
+  top: 254px;
+  right: 887px;
+  z-index: 203;
+  pointer-events: none;
+} .crane-back {
+  position: absolute;
+  top: 194px;
+  right: 852px;
+  z-index: 200;
   pointer-events: none;
 } .crane-leg {
   position: absolute;
@@ -158,7 +170,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 219;
+  z-index: 202;
   height: 200px;
 } .rope-vertical {
   width: 5px;
@@ -256,16 +268,87 @@
   position: absolute;
   cursor: pointer;
 } .railway-carriage-1 {
-  top: -56px;
+  /* top: -56px;
   right: -368px;
-  z-index: 3;
+  z-index: 3; */
 } .railway-carriage-2 {
-  top: -140px;
+  /* top: -140px;
   right: -523px;
-  z-index: 2;
+  z-index: 2; */
 } .railway-carriage-3 {
-  top: -224px;
+  /* top: -224px;
   right: -677px;
+  z-index: 1; */
+} .carriage-block {
+  position: relative;
+} .arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+} .minigame-containers-block .minigame-container_bg .arrow::before {
+  content: "↓";
+  position: absolute;
+  display: inline-block;
+  text-align: center;
+  width: 60px;
+  height: 75px;
+  left: 10px;
+  font-weight: 900;
+  font-size: 60px;
+  color: #f56363;
+  /* color: #bf3d3d; */
+  z-index: 1000;
+  transition: 0.5s;
+  animation-name: arrowForContainer;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  pointer-events: none;
+} .minigame-container_bg ~ .arrow::before, .minigame-container_bg .arrow::before {
+  content: "↓";
+  position: absolute;
+  display: inline-block;
+  text-align: center;
+  width: 60px;
+  height: 75px;
+  top: -90px;
+  left: 50px;
+  font-weight: 900;
+  font-size: 60px;
+  color: #f56363;
+  z-index: 1000;
+  transition: 0.5s;
+  animation-name: arrow;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  pointer-events: none;
+  /* animation-fill-mode: ; */
+} /*.carriage-block ~ .minigame-container_bg::before {
+  content: "↓";
+  position: absolute;
+  display: inline-block;
+  text-align: center;
+  width: 60px;
+  height: 75px;
+  font-weight: 900;
+  font-size: 60px;
+  color: #fcdd60;
+  z-index: 1000;
+  transition: 0.5s;
+} */ .carriage-block-1 {
+  top: -56px;
+  right: -183px;
+  z-index: 3;
+} .carriage-block-2 {
+  top: -140px;
+  right: -336px;
+  z-index: 2;
+} .carriage-block-3 {
+  top: -224px;
+  right: -490px;
   z-index: 1;
 } 
 
@@ -297,12 +380,19 @@
   animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: forwards;
-} .minigame-car_1__container {
-  top: -22px;
-  right: 12px;
-} .minigame-car_2__container {
-  top: -21px;
-  right: 13px;
+} .minigame-car_cabin {
+  position: absolute;
+  right: 74px;
+  top: 18px;
+  z-index: 999;
+} .minigame-cars .minigame-car_1__container {
+  top: -114px;
+  right: -37px;
+} .minigame-cars .minigame-car_2__container {
+  top: -114px;
+  right: -37px;
+  /* top: -21px;
+  right: 13px; */
 } .minigame-car_anim {
   animation-name: carStart1;
 } .minigame-cars_start {
@@ -314,24 +404,20 @@
 .minigame-containers-block {
   position: relative;
   top: 421px;
-  right: -982px;
+  /* right: -982px; */
+  right: -890px;
   width: 0;
+} .container-block {
+  position: relative;
 } .minigame-container {
   position: absolute;
   transition: 0.5s;
   cursor: pointer;
+} .container-z-index {
+  z-index: 201 !important;
 } .minigame-container_bg {
   box-shadow: 0px 0px 10px #fff;
-} .minigame-container_bg::before {
-  content: "↓";
-  position: absolute;
-  top: -15px;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
-  color: #fcdd60;
-} .minigame-container-1 {
+}/*  .minigame-container-1 {
   top: 0px;
   right: 417px;
   z-index: 21;
@@ -379,32 +465,88 @@
   top: -33px;
   right: 203px;
   z-index: 16;
+} */
+
+.container-block-1 {
+  top: 0px;
+  right: 417px;
+  z-index: 21;
+} .container-block-2 {
+  top: 14px;
+  right: 393px;
+  z-index: 22;
+} .container-block-3 {
+  top: 29px;
+  right: 368px;
+  z-index: 23;
+} .container-block-4 {
+  top: 44px;
+  right: 342px;
+  z-index: 24;
+} .container-block-5 {
+  top: -40px;
+  right: 350px;
+  z-index: 17;
+} .container-block-6 {
+  top: -26px;
+  right: 325px;
+  z-index: 18;
+} .container-block-7 {
+  top: -10px;
+  right: 296px;
+  z-index: 19;
+} .container-block-8 {
+  top: 4px;
+  right: 270px;
+  z-index: 20;
+} .container-block-9 {
+  top: -78px;
+  right: 282px;
+  z-index: 13;
+} .container-block-10 {
+  top: -63px;
+  right: 256px;
+  z-index: 14;
+} .container-block-11 {
+  top: -48px;
+  right: 230px;
+  z-index: 15;
+} .container-block-12 {
+  top: -33px;
+  right: 203px;
+  z-index: 16;
 }
 
 .minigame-container-railway_1-pos_1 {
   z-index: 149;
   top: -33px;
-  right: -282px;
+  /* right: -282px; */
+  right: -202px;
 } .minigame-container-railway_1-pos_2 {
   z-index: 148;
   top: -75px;
-  right: -352px;
+  /* right: -352px; */
+  right: -272px;
 } .minigame-container-railway_2-pos_1 {
   z-index: 149;
   top: -118px;
-  right: -434px;
+  /* right: -434px; */
+  right: -351px;
 } .minigame-container-railway_2-pos_2 {
   z-index: 148;
   top: -160px;
-  right: -510px;
+  /* right: -510px; */
+  right: -426px;
 } .minigame-container-railway_3-pos_1 {
   z-index: 149;
-  top: -202px;
-  right: -589px;
+  top: -203px;
+  /* right: -589px; */
+  right: -509px;
 } .minigame-container-railway_3-pos_2 {
   z-index: 148;
   top: -243px;
-  right: -660px;
+  /* right: -660px; */
+  right: -580px;
 }
 
 @media (max-width: 1279px) {
@@ -421,13 +563,21 @@
     max-width: 350px;
     top: 135px;
     right: 545px;
-  } .minigame-crane-footer {
+  }/*  .minigame-crane-footer {
     max-width: 200px;
     right: 586px;
+  }  */.crane-front {
+    width: 186px;
+    top: 236px;
+    right: 606px;
+  } .crane-back {
+    width: 210px;
+    top: 191px;
+    right: 580px;
   } .crane-leg {
     width: 128px;
-    top: 376px;
-    right: 681px;
+    top: 388px;
+    right: 687px;
   } .rope {
     top: 160px;
     left: 392px;
@@ -439,7 +589,8 @@
     right: -1030px;
   } .minigame-containers-block {
     top: 315px;
-    right: -716px;
+    right: -630px;
+    /* right: -716px; */
   } .ropeStart {
     animation-name: ropeStart1279;
   } .ropeEnd {
@@ -475,6 +626,10 @@
     animation-name: minigameCarsStart1279;
   } .minigame-cars_end {
     animation-name: minigameCarsEnd1279;
+  } .minigame-car_cabin {
+    width: 53px;
+    top: 14px;
+    right: 58px;
   }
   
   .trainEnd {
@@ -491,17 +646,74 @@
     animation-name: carEndRope2_1279;
   }
   
-  .minigame-car_1__container {
-    top: -14px;
-    right: 12px;
-  } .minigame-car_2__container {
-    top: -14px;
-    right: 13px;
+  .minigame-cars .minigame-car_1__container {
+    /* top: -14px;
+    right: 12px; */
+    top: -89px;
+    right: -35px;
+  } .minigame-cars .minigame-car_2__container {
+    /* top: -14px;
+    right: 13px; */
+    top: -89px;
+    right: -35px;
   }
   
+  .minigame-containers-block .minigame-container_bg .arrow::before {
+    left: -5px;
+    font-size: 45px;
+  }
+    
   .minigame-container {
     max-width: 60px;
-  } .minigame-container-1 {
+  } .container-block-1 {
+    top: 16px;
+    right: 393px;
+    z-index: 21;
+  } .container-block-2 {
+    top: 25px;
+    right: 376px;
+    z-index: 22;
+  } .container-block-3 {
+    top: 35px;
+    right: 359px;
+    z-index: 23;
+  } .container-block-4 {
+    top: 44px;
+    right: 342px;
+    z-index: 24;
+  } .container-block-5 {
+    top: -11px;
+    right: 346px;
+    z-index: 17;
+  } .container-block-6 {
+    top: -2px;
+    right: 329px;
+    z-index: 18;
+  } .container-block-7 {
+    top: 8px;
+    right: 312px;
+    z-index: 19;
+  } .container-block-8 {
+    top: 18px;
+    right: 295px;
+    z-index: 20;
+  } /* .container-block-9 {
+    top: -78px;
+    right: 282px;
+    z-index: 13;
+  } .container-block-10 {
+    top: -63px;
+    right: 256px;
+    z-index: 14;
+  } .container-block-11 {
+    top: -48px;
+    right: 230px;
+    z-index: 15;
+  } .container-block-12 {
+    top: -33px;
+    right: 203px;
+    z-index: 16;
+  }  *//* .minigame-container-1 {
     top: 0px;
     right: 418px;
   } .minigame-container-2 {
@@ -537,32 +749,38 @@
   } .minigame-container-12 {
     top: -23px;
     right: 266px;
-  }
+  } */
   
   .minigame-container-railway_1-pos_1 {
     z-index: 149;
     top: -20px;
-    right: -270px;
+    right: -210px;
+    /* right: -270px; */
   } .minigame-container-railway_1-pos_2 {
     z-index: 148;
     top: -58px;
-    right: -340px;
+    right: -280px;
+    /* right: -340px; */
   } .minigame-container-railway_2-pos_1 {
     z-index: 149;
     top: -105px;
-    right: -427px;
+    right: -367px; 
+    /* right: -427px; */
   } .minigame-container-railway_2-pos_2 {
     z-index: 148;
     top: -146px;
-    right: -502px;
+    right: -442px;
+    /* right: -502px; */
   } .minigame-container-railway_3-pos_1 {
     z-index: 149;
     top: -187px;
-    right: -577px;
+    right: -517px;
+    /* right: -577px; */
   } .minigame-container-railway_3-pos_2 {
     z-index: 148;
     top: -225px;
-    right: -646px;
+    right: -586px;
+    /* right: -646px; */
   }
 } @media (max-width: 959px) {
   .minigame { 
@@ -584,9 +802,17 @@
     right: 394px;
     /* top: 160px; */
     top: 93px;
+  } .crane-front {
+    width: 186px;
+    top: 132px;
+    right: 414px;
+  } .crane-back {
+    width: 210px;
+    top: 87px;
+    right: 388px;
   } .crane-leg {
-    top: 277px; 
-    right: 492px;
+    top: 284px;
+    right: 496px;
   } .rope {
     top: 60px;
     left: 262px;
@@ -598,7 +824,8 @@
     right: -689px;
   } .minigame-containers-block {
     top: 211px;
-    right: -244px;
+    right: -623px;
+    /* right: -244px; */
   } .ropeStart {
     animation-name: ropeStart960;
   } .ropeEnd {
@@ -646,7 +873,45 @@
     animation-name: minigameCarsEnd959;
   }
   
-  .minigame-container {
+  .container-block-1 {
+    top: 8px;
+    right: 394px;
+  } .container-block-2 {
+    top: 17px;
+    right: 377px;
+  } .container-block-3 {
+    top: 27px;
+    right: 360px;
+  } .container-block-4 {
+    top: 36px;
+    right: 343px;
+  } .container-block-5 {
+    top: -19px;
+    right: 346px;
+  } .container-block-6 {
+    top: -9px;
+    right: 330px;
+  } .container-block-7 {
+    top: 1px;
+    right: 313px;
+  } .container-block-8 {
+    top: 10px;
+    right: 296px;
+  } /* .container-block-9 {
+    top: -78px;
+    right: 282px;
+  } .container-block-10 {
+    top: -63px;
+    right: 256px;
+  } .container-block-11 {
+    top: -48px;
+    right: 230px;
+  } .container-block-12 {
+    top: -33px;
+    right: 203px;
+  } */
+  
+  /* .minigame-container {
     max-width: 55px;
   } .minigame-container-1 {
     top: 3px;
@@ -684,32 +949,38 @@
   } .minigame-container-12 {
     top: -18px;
     right: -191px;
-  }
+  } */
   
   .minigame-container-railway_1-pos_1 {
     z-index: 149;
     top: -25px;
-    right: -276px;
+    right: -222px;
+    /* right: -276px; */
   } .minigame-container-railway_1-pos_2 {
     z-index: 148;
     top: -54px;
-    right: -327px;
+    right: -273px;
+    /* right: -327px; */
   } .minigame-container-railway_2-pos_1 {
     z-index: 149;
     top: -100px;
-    right: -416px;
+    right: -362px;
+    /* right: -416px; */
   } .minigame-container-railway_2-pos_2 {
     z-index: 148;
     top: -130px;
-    right: -468px;
+    right: -414px;
+    /* right: -468px; */
   } .minigame-container-railway_3-pos_1 {
     z-index: 149;
     top: -181px;
-    right: -562px;
+    right: -508px;
+    /* right: -562px; */
   } .minigame-container-railway_3-pos_2 {
     z-index: 148;
     top: -211px;
-    right: -614px;
+    right: -560px;
+    /* right: -614px; */
   }
 } @media (max-width: 650px) and (orientation: portrait) {
   .minigame-lock {
@@ -968,7 +1239,7 @@
     height: 287px;
   } 50% {
     top: 263px;
-    left: 870px;
+    left: 923px;
     height: 200px;
   } 100% {
     top: 100px;
@@ -1630,4 +1901,22 @@
     left: 262px;
     height: 140px;
   } 
+}
+
+@keyframes arrow {
+  0% {
+    top: -90px;
+  } 50% {
+    top: -100px;
+  } 100% {
+    top: -90px;
+  }
+} @keyframes arrowForContainer {
+  0% {
+    top: -40px;
+  } 50% {
+    top: -50px;
+  } 100% {
+    top: -40px;
+  }
 }
